@@ -1,13 +1,12 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -97,60 +96,52 @@ public class Main extends Application {
         Rectangle playerCardsRectangle = new Rectangle();
         setCardRectangles(playerCardsRectangle, 200, sceneHeight - cardHeight - 20);
 
+        //game history
+        ScrollPane historyPane = new ScrollPane();
+
 
         //przyciski gry
         Button startGame = new Button("Start Game");
         Button callButton = new Button("Call");
         Button raiseButton = new Button("Raise");
         Button passButton = new Button("Pass");
-        ScrollBar raiseBar = new ScrollBar();
-        Label raiseLabel = new Label();
         Button lowerBetButton = new Button("-");
         Button higherBetButton = new Button("+");
+        Button AllInButton = new Button("All in");
         Label betLabel = new Label();
         Group betGroup = new Group();
-        HBox box = new HBox();
+        HBox betBox = new HBox();
+        VBox menu = new VBox();
 
+        betBox.getChildren().addAll(lowerBetButton, betLabel, higherBetButton, raiseButton, AllInButton);
+        betBox.setSpacing(3);
+        menu.getChildren().addAll(startGame, betGroup, callButton, passButton);
+        menu.setLayoutX(30);
+        menu.setLayoutY(20);
+        menu.setSpacing(5);
+        menu.setAlignment(Pos.CENTER);
 
-        box.getChildren().addAll(lowerBetButton, betLabel, higherBetButton, callButton);
         betLabel.setMinWidth(10);
         int betValue = 10 ;
         betLabel.setText(String.valueOf(betValue));
-        betGroup.getChildren().add(box);
-        betGroup.setLayoutX(50);
-        betGroup.setLayoutY(sceneHeight/2 + cardHeight/2 + 60);
+        betGroup.getChildren().add(betBox);
 
-
-        startGame.setLayoutX(50);
-        startGame.setLayoutY(sceneHeight/2 + cardHeight/2 + 20);
-
-        callButton.setLayoutX(50);
-        callButton.setLayoutY(sceneHeight/2 + cardHeight/2 + 60);
-
-        raiseButton.setLayoutX(50);
-        raiseButton.setLayoutY(sceneHeight/2 + cardHeight/2 + 100);
-
-        passButton.setLayoutX(50);
-        passButton.setLayoutY(sceneHeight/2 + cardHeight/2 + 140);
-
-        raiseLabel.setText(String.valueOf(raiseBar.getValue()));
-        raiseLabel.setLayoutY(passButton.getLayoutY());
-        raiseLabel.setLayoutX(100);
-
-        raiseBar.setOrientation(Orientation.HORIZONTAL);
-        raiseBar.setLayoutX(50);
-        raiseBar.setLayoutY(sceneHeight/2 + cardHeight/2 + 180);
-        raiseBar.setBlockIncrement(10);
-        raiseBar.setUnitIncrement(10);
-        raiseBar.setMin(10);
-        raiseBar.setMax(100);
-        raiseBar.setValue(10);
+        //pozycjonowanie przycisków
+        /*betGroup.setLayoutX(30);
+        betGroup.setLayoutY(100);
+        startGame.setLayoutX(30);
+        startGame.setLayoutY(20);
+        callButton.setLayoutX(30);
+        callButton.setLayoutY(60);
+        passButton.setLayoutX(30);
+        passButton.setLayoutY(140);*/
 
         lowerBetButton.setOnAction(event -> {
             int s = Integer.valueOf(betLabel.getText());
             if(s > 10) {
                 s -=  10;
                 betLabel.setText(String.valueOf(s));
+                System.out.println("Value to call: " + s);
             }
         });
 
@@ -159,15 +150,15 @@ public class Main extends Application {
             if(s < 100) {
                 s += 10;
                 betLabel.setText(String.valueOf(s));
+                System.out.println("Value to call: " + s);
             }
         });
 
-        raiseBar.valueProperty().addListener((observable, old_val, new_val) -> {
-            int intValueOfNewVal = new_val.intValue();
-            intValueOfNewVal = intValueOfNewVal - intValueOfNewVal%10;
-            raiseLabel.setText(Integer.toString(intValueOfNewVal));
-            System.out.println(intValueOfNewVal);
+        AllInButton.setOnAction(event -> {
+            betLabel.setText(String.valueOf(100));
+            System.out.println("Calling All in");
         });
+
 
 
 
@@ -179,13 +170,12 @@ public class Main extends Application {
         newGamePane.getChildren().add(riverCardsRectangle);
         newGamePane.getChildren().add(oponentCardsRectangle);
         newGamePane.getChildren().add(playerCardsRectangle);
-        newGamePane.getChildren().add(startGame);
-        newGamePane.getChildren().add(betGroup);
-        //newGamePane.getChildren().add(callButton);
-        newGamePane.getChildren().add(raiseButton);
-        newGamePane.getChildren().add(passButton);
-        newGamePane.getChildren().add(raiseBar);
-        newGamePane.getChildren().add(raiseLabel);
+        newGamePane.getChildren().add(menu);
+        newGamePane.getChildren().add(historyPane);
+        /*newGamePane.getChildren().add(betGroup);
+        newGamePane.getChildren().add(callButton);
+        newGamePane.getChildren().add(passButton);*/
+
 
         Scene newGameScene = new Scene(newGamePane, sceneWidth, sceneHeight);
         newGamePane.setStyle("-fx-background-color: green;");
