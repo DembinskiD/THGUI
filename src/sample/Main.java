@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -7,18 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
+import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
-
+import javafx.util.Duration;
 
 
 public class Main extends Application {
@@ -98,9 +98,31 @@ public class Main extends Application {
 
         //game history
         ScrollPane historyPane = new ScrollPane();
+        historyPane.setLayoutX(10);
+        historyPane.setLayoutY(sceneHeight/2 + cardHeight/2 + 20);
+        historyPane.setMinWidth(180);
+        historyPane.setMinHeight(200);
+        historyPane.setMaxHeight(200);
+        Text consoleText = new Text();
+        historyPane.setContent(consoleText);
+        consoleText.setText("Click on 'Start Game' to begin");
+
 
 
         //przyciski gry
+        Label mouseXPos = new Label();
+        Label mouseYPos = new Label();
+        mouseXPos.setLayoutX(sceneWidth/2 - 30);
+        mouseYPos.setLayoutX(sceneWidth/2 + 30);
+        mouseXPos.setLayoutY(sceneHeight - 30);
+        mouseYPos.setLayoutY(sceneHeight - 30);
+
+     /*  MouseEvent mouseEvent = new MouseEvent(MouseEvent.MOUSE_MOVED, 0, 0, sceneWidth,
+                sceneHeight, MouseButton.NONE, 0,
+                false, false, false, false, false, false, false, false, false, null);
+*/
+
+
         Button startGame = new Button("Start Game");
         Button callButton = new Button("Call");
         Button raiseButton = new Button("Raise");
@@ -159,23 +181,37 @@ public class Main extends Application {
             System.out.println("Calling All in");
         });
 
+        //TODO: zrobic animacje krążka dla rozdajacego gracza, animacja pod przyciskiem startGame
+        Circle circle = new Circle(20, Color.RED);
+        Path path = new Path();
+        path.getElements().addAll(new MoveTo(0,0), new LineTo(300, 300));
+        path.setBlendMode(BlendMode.ADD);
+        PathTransition pt = new PathTransition(Duration.millis(400), path, circle);
+        pt.setCycleCount(1);
+        pt.setAutoReverse(false);
+
+        startGame.setOnAction(event -> {
+            consoleText.setText(consoleText.getText() + "\n" + "Hello World!");
+            historyPane.setVvalue(1.0);
+            if(!newGamePane.getChildren().contains(circle)) newGamePane.getChildren().add(circle);
+            pt.play();
+
+        });
+
 
 
 
         //dodanie node 'ów do pane 'a
-
-        newGamePane.getChildren().add(deckStackRectangle);
-        newGamePane.getChildren().add(flopCardsRectangle);
-        newGamePane.getChildren().add(turnCardsRectangle);
-        newGamePane.getChildren().add(riverCardsRectangle);
-        newGamePane.getChildren().add(oponentCardsRectangle);
-        newGamePane.getChildren().add(playerCardsRectangle);
-        newGamePane.getChildren().add(menu);
-        newGamePane.getChildren().add(historyPane);
-        /*newGamePane.getChildren().add(betGroup);
-        newGamePane.getChildren().add(callButton);
-        newGamePane.getChildren().add(passButton);*/
-
+        newGamePane.getChildren().addAll(
+                deckStackRectangle,
+                flopCardsRectangle,
+                turnCardsRectangle,
+                riverCardsRectangle,
+                oponentCardsRectangle,
+                playerCardsRectangle,
+                menu,
+                historyPane,
+                path);
 
         Scene newGameScene = new Scene(newGamePane, sceneWidth, sceneHeight);
         newGamePane.setStyle("-fx-background-color: green;");
