@@ -1,24 +1,17 @@
 package sample;
 
-import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
-import javafx.scene.text.Text;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 
 public class Main extends Application {
@@ -28,7 +21,7 @@ public class Main extends Application {
     static int cardHeight = sceneHeight/4;
     static double cardWidth = cardHeight/1.7;
 
-
+// stage > scene > pane > node
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Texas Hold'em");
@@ -36,7 +29,8 @@ public class Main extends Application {
         Button newGameBtn = new Button("New Game");
         //Button actions
         exitBtn.setOnAction(event -> primaryStage.close());
-        newGameBtn.setOnAction(event -> newGameScene());
+        //newGameBtn.setOnAction(event -> newGameScene());
+        newGameBtn.setOnAction(event -> new NewGameGridPane());
         VBox pane = new VBox(10);
         Image image = new Image("https://cdn.howtoplay.org/wp-content/uploads/2016/03/Texas-Holdem-logo.png");
         ImageView logoView = new ImageView(image);
@@ -55,23 +49,6 @@ public class Main extends Application {
         newGameStage.setTitle("New Game");
         newGameStage.setResizable(false);
         Pane newGamePane = new Pane();
-
-       /* dck.deckStack.peek().getCardBackImageView().setLayoutX(10);
-        dck.deckStack.peek().getCardBackImageView().setLayoutY(10);
-        newGamePane.getChildren().add(dck.deckStack.pop().getCardBackImageView());
-
-        dck.deckStack.peek().getCardBackImageView().setLayoutX(7);
-        dck.deckStack.peek().getCardBackImageView().setLayoutY(7);
-        newGamePane.getChildren().add(dck.deckStack.pop().getCardBackImageView());
-
-        dck.deckStack.peek().getCardBackImageView().setLayoutX(4);
-        dck.deckStack.peek().getCardBackImageView().setLayoutY(4);
-        newGamePane.getChildren().add(dck.deckStack.pop().getCardBackImageView());
-
-        dck.deckStack.peek().getCardBackImageView().setLayoutX(1);
-        dck.deckStack.peek().getCardBackImageView().setLayoutY(1);
-        newGamePane.getChildren().add(dck.deckStack.pop().getCardBackImageView());
-        */
 
 
         //stos kart obróconych koszulką do góry, do dobierania kart
@@ -97,108 +74,21 @@ public class Main extends Application {
         setCardRectangles(playerCardsRectangle, 200, sceneHeight - cardHeight - 20);
 
         //game history
-        ScrollPane historyPane = new ScrollPane();
-        historyPane.setLayoutX(10);
-        historyPane.setLayoutY(sceneHeight/2 + cardHeight/2 + 20);
-        historyPane.setMinWidth(180);
-        historyPane.setMinHeight(200);
-        historyPane.setMaxHeight(200);
-        Text consoleText = new Text();
-        historyPane.setContent(consoleText);
-        consoleText.setText("Click on 'Start Game' to begin");
-
-
+        GameConsole historyConsole = new GameConsole();
 
         //przyciski gry
-        Label mouseXPos = new Label();
-        Label mouseYPos = new Label();
-        mouseXPos.setLayoutX(sceneWidth/2 - 30);
-        mouseYPos.setLayoutX(sceneWidth/2 + 30);
-        mouseXPos.setLayoutY(sceneHeight - 30);
-        mouseYPos.setLayoutY(sceneHeight - 30);
-
-     /*  MouseEvent mouseEvent = new MouseEvent(MouseEvent.MOUSE_MOVED, 0, 0, sceneWidth,
-                sceneHeight, MouseButton.NONE, 0,
-                false, false, false, false, false, false, false, false, false, null);
-*/
+        MenuButtons gameMenuButtons = new MenuButtons(historyConsole);
 
 
-        Button startGame = new Button("Start Game");
-        Button callButton = new Button("Call");
-        Button raiseButton = new Button("Raise");
-        Button passButton = new Button("Pass");
-        Button lowerBetButton = new Button("-");
-        Button higherBetButton = new Button("+");
-        Button AllInButton = new Button("All in");
-        Label betLabel = new Label();
-        Group betGroup = new Group();
-        HBox betBox = new HBox();
-        VBox menu = new VBox();
-
-        betBox.getChildren().addAll(lowerBetButton, betLabel, higherBetButton, raiseButton, AllInButton);
-        betBox.setSpacing(3);
-        menu.getChildren().addAll(startGame, betGroup, callButton, passButton);
-        menu.setLayoutX(30);
-        menu.setLayoutY(20);
-        menu.setSpacing(5);
-        menu.setAlignment(Pos.CENTER);
-
-        betLabel.setMinWidth(10);
-        int betValue = 10 ;
-        betLabel.setText(String.valueOf(betValue));
-        betGroup.getChildren().add(betBox);
-
-        //pozycjonowanie przycisków
-        /*betGroup.setLayoutX(30);
-        betGroup.setLayoutY(100);
-        startGame.setLayoutX(30);
-        startGame.setLayoutY(20);
-        callButton.setLayoutX(30);
-        callButton.setLayoutY(60);
-        passButton.setLayoutX(30);
-        passButton.setLayoutY(140);*/
-
-        lowerBetButton.setOnAction(event -> {
-            int s = Integer.valueOf(betLabel.getText());
-            if(s > 10) {
-                s -=  10;
-                betLabel.setText(String.valueOf(s));
-                System.out.println("Value to call: " + s);
-            }
-        });
-
-        higherBetButton.setOnAction(event -> {
-            int s = Integer.valueOf(betLabel.getText());
-            if(s < 100) {
-                s += 10;
-                betLabel.setText(String.valueOf(s));
-                System.out.println("Value to call: " + s);
-            }
-        });
-
-        AllInButton.setOnAction(event -> {
-            betLabel.setText(String.valueOf(100));
-            System.out.println("Calling All in");
-        });
 
         //TODO: zrobic animacje krążka dla rozdajacego gracza, animacja pod przyciskiem startGame
-        Circle circle = new Circle(20, Color.RED);
+        /*Circle circle = new Circle(20, Color.RED);
         Path path = new Path();
         path.getElements().addAll(new MoveTo(0,0), new LineTo(300, 300));
         path.setBlendMode(BlendMode.ADD);
         PathTransition pt = new PathTransition(Duration.millis(400), path, circle);
         pt.setCycleCount(1);
-        pt.setAutoReverse(false);
-
-        startGame.setOnAction(event -> {
-            consoleText.setText(consoleText.getText() + "\n" + "Hello World!");
-            historyPane.setVvalue(1.0);
-            if(!newGamePane.getChildren().contains(circle)) newGamePane.getChildren().add(circle);
-            pt.play();
-
-        });
-
-
+        pt.setAutoReverse(false);*/
 
 
         //dodanie node 'ów do pane 'a
@@ -209,9 +99,8 @@ public class Main extends Application {
                 riverCardsRectangle,
                 oponentCardsRectangle,
                 playerCardsRectangle,
-                menu,
-                historyPane,
-                path);
+                gameMenuButtons.getMenuButtons(),
+                historyConsole.getHistoryConsole());
 
         Scene newGameScene = new Scene(newGamePane, sceneWidth, sceneHeight);
         newGamePane.setStyle("-fx-background-color: green;");
