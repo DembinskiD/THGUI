@@ -7,11 +7,7 @@ public class Card {
     private CardRank rank;
     private CardColor color;
     private String imageURL;
-    Image cardImage;
-    ImageView cardImageView;
-    private String cardBackURL = "http://dembik.cba.pl/PNG/blue_back.png";
-    private Image cardBackImage;
-    private ImageView cardBackImageView;
+    private ImageView cardImageView;
 
 
 
@@ -21,10 +17,12 @@ public class Card {
         this.color = color;
     }
 
-    public Card(CardRank rank, CardColor color, String imageURL) {
+    public Card(CardRank rank, CardColor color, ImageView backView, String imageURL) {
+        this.cardImageView = backView;
+        this.cardImageView.setFitHeight(Main.cardHeight);
+        this.cardImageView.setFitWidth(Main.cardWidth);
         this.rank = rank;
         this.color = color;
-        //System.out.println(imageURL);
         this.imageURL = imageURL;
 
     }
@@ -42,25 +40,15 @@ public class Card {
         return imageURL;
     }
 
-    public Image getCardImage() {
-        return cardImage;
-    }
 
     public ImageView getCardImageView() {
-        this.cardImage = new Image(imageURL);
-        this.cardImageView = new ImageView(this.imageURL);
-        this.cardImageView.setFitHeight(100);
-        this.cardImageView.setFitWidth(60);
         return cardImageView;
     }
 
-    public ImageView getCardBackImageView() {
-        this.cardBackImage = new Image(this.cardBackURL);
-        this.cardBackImageView = new ImageView(this.cardBackURL);
-        this.cardBackImageView.setFitHeight(100);
-        this.cardBackImageView.setFitWidth(60);
-        return this.cardBackImageView;
+    public void turnCard(){
+        this.cardImageView.setImage(new Image(imageURL));
     }
+
 
     //Setters
 

@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.geometry.HPos;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
@@ -16,6 +18,7 @@ public class OneCardRectangle {
         cardsStack.setFill(Color.rgb(0,100,0));
         cardsStack.setStrokeType(StrokeType.INSIDE);
         cardsStack.setStroke(Color.BLACK);
+        GridPane.setHalignment(this.cardsStack, HPos.LEFT);
     }
 
 

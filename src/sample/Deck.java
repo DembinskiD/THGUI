@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.scene.image.ImageView;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Stack;
@@ -8,6 +10,8 @@ public class Deck {
     public int maxCardsInDeck;
     public int AmountCardsInDeck;
     protected Stack<Card> deckStack  = new Stack<>();
+    private String cardBackURL = "http://dembik.cba.pl/PNG/blue_back.png";
+    private ImageView cardBackImageView;
 
 
     public Deck(){
@@ -15,10 +19,16 @@ public class Deck {
                 .forEach(cardRank -> {
                     Arrays.stream(CardColor.values())
                             .forEach(cardColor -> {
-                                this.deckStack.push(new Card(cardRank, cardColor, ("http://dembik.cba.pl/PNG/" + cardRank.getLink() + cardColor.getLink() + ".png")));
+                                this.cardBackImageView = new ImageView(cardBackURL);
+                                this.deckStack.push(new Card(cardRank, cardColor, this.cardBackImageView, ("http://dembik.cba.pl/PNG/" + cardRank.getLink() + cardColor.getLink() + ".png")));
+
                             });
                 });
+
         Collections.shuffle(deckStack);
     }
 
+    public Stack<Card> getDeckStack() {
+        return deckStack;
+    }
 }

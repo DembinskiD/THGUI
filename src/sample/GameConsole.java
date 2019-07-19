@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.geometry.HPos;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 public class GameConsole {
@@ -11,12 +13,12 @@ public class GameConsole {
 
     public GameConsole() {
         historyConsole.setContent(historyConsoleText);
-        historyConsole.setLayoutX(10);
         historyConsole.setLayoutY(sceneHeight/2 + cardHeight/2 + 20);
         historyConsole.setMinWidth(180);
         historyConsole.setMaxWidth(180);
         historyConsole.setMinHeight(200);
         historyConsole.setMaxHeight(200);
+        GridPane.setHalignment(this.historyConsole, HPos.CENTER);
         historyConsoleText.setText("Start new game.");
     }
 
