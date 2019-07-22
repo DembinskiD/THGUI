@@ -10,20 +10,19 @@ public class Deck {
     public int maxCardsInDeck;
     public int AmountCardsInDeck;
     protected Stack<Card> deckStack  = new Stack<>();
-    private String cardBackURL = "http://dembik.cba.pl/PNG/blue_back.png";
+    private String cardBackURL = "sample/Graphics/" + Main.cardRewers;
     private ImageView cardBackImageView;
 
 
     public Deck(){
         Arrays.stream(CardRank.values())
-                .forEach(cardRank -> {
+                .forEach(cardRank ->
                     Arrays.stream(CardColor.values())
                             .forEach(cardColor -> {
                                 this.cardBackImageView = new ImageView(cardBackURL);
-                                this.deckStack.push(new Card(cardRank, cardColor, this.cardBackImageView, ("http://dembik.cba.pl/PNG/" + cardRank.getLink() + cardColor.getLink() + ".png")));
+                                this.deckStack.push(new Card(cardRank, cardColor, this.cardBackImageView, ("sample/Graphics/" + cardRank.getLink() + cardColor.getLink() + ".png")));
 
-                            });
-                });
+                            }));
 
         Collections.shuffle(deckStack);
     }

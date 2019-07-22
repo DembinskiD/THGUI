@@ -10,6 +10,7 @@ public class Game {
     private ArrayList<Card> flopCards = new ArrayList<>();
     private ArrayList<Card> turnCards = new ArrayList<>();
     private ArrayList<Card> riverCards = new ArrayList<>();
+    private GameState stateOfTheGame;
 
     public Game() {
         this.playerList = new PlayerManager(2);
@@ -29,6 +30,14 @@ public class Game {
 
     }
 
+    public GameState getStateOfTheGame() {
+        return stateOfTheGame;
+    }
+
+    public void setStateOfTheGame(GameState stateOfTheGame) {
+        this.stateOfTheGame = stateOfTheGame;
+    }
+
     public PlayerManager getPlayerList() {
         return playerList;
     }
@@ -42,7 +51,7 @@ public class Game {
     }
 
     private void firstCardDistributionToPlayersHands() {
-        for(int i = 0 ; i < 3 ; i++){
+        for(int i = 0 ; i < 2 ; i++){
             for(Player pl : getPlayerList().getListOfPlayers()){
                 pl.addCardToPlayersHand(this.playingDeck.getDeckStack().pop());
             }
@@ -59,5 +68,17 @@ public class Game {
 
     private void river() {
         riverCards.add(this.playingDeck.getDeckStack().pop());
+    }
+
+    public ArrayList<Card> getFlopCards() {
+        return flopCards;
+    }
+
+    public ArrayList<Card> getTurnCards() {
+        return turnCards;
+    }
+
+    public ArrayList<Card> getRiverCards() {
+        return riverCards;
     }
 }

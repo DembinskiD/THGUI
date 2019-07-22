@@ -6,11 +6,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 
-public class ThreeCardsRectangle {
+public class FlopRectangle {
     private Rectangle flopRectangle = new Rectangle();
 
 
-    public ThreeCardsRectangle() {
+    public FlopRectangle() {
         flopRectangle.setWidth(40 + 3*Main.cardWidth);
         flopRectangle.setHeight(Main.cardHeight);
         flopRectangle.setArcHeight(20);

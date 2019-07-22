@@ -28,31 +28,54 @@ public class MenuButtons {
     private Text raiseButtonText = new Text("Raised by ");
     private VBox menuButtons = new VBox();
     private HBox raiseButtons = new HBox();
+    public NewGameGridPane newGameGridPane;
 
-    public MenuButtons(GameConsole gameConsole) {
+    public MenuButtons(NewGameGridPane newGameGridPane, GameConsole gameConsole) {
+        this.startGameButton.setDisable(false);
+        this.callButton.setDisable(false);
+        this.newGameGridPane = newGameGridPane;
         raiseButtons.setSpacing(3);
-        raiseButtons.getChildren().addAll(decreaseRaiseButton, raiseAmountLabel, increaseRaiseButton, raiseButton);
+        raiseButtons.getChildren().addAll(decreaseRaiseButton, raiseAmountLabel, increaseRaiseButton);
         raiseButtons.setAlignment(Pos.CENTER);
         menuButtons.setSpacing(2);
-        menuButtons.getChildren().addAll(startGameButton, callButton, raiseButtons, allInButton, passButton);
+        menuButtons.getChildren().addAll(startGameButton, callButton, raiseButtons, raiseButton, allInButton, passButton);
         menuButtons.setAlignment(Pos.CENTER);
         GridPane.setHalignment(this.menuButtons, HPos.CENTER);
 
         raiseAmountLabel.setText("10");
         onClickActions(gameConsole);
+
+        startGameButton.setMinWidth(100);
+        callButton.setMinWidth(100);
+        allInButton.setMinWidth(100);
+        passButton.setMinWidth(100);
+        raiseButtons.setMaxWidth(100);
+        raiseButtons.setMinWidth(100);
+
+        decreaseRaiseButton.setMinWidth(30);
+        increaseRaiseButton.setMinWidth(30);
+        raiseAmountLabel.setMinWidth(34);
+        raiseAmountLabel.setAlignment(Pos.CENTER);
+        raiseButton.setMinWidth(100);
     }
 
     private void onClickActions(GameConsole gameConsole){
 
-        //TODO starting new game should start tossing cards, putting them on proper fields and start game loop
         startGameButton.setOnAction(event -> {
+
+
+            this.newGameGridPane.putDeckCardsOnItsPlace();
+            this.newGameGridPane.putCardsToPlayersHands();
+            this.newGameGridPane.putCardsToOpponentHands();
+            this.startGameButton.setDisable(true);
+            this.newGameGridPane.getGame().setStateOfTheGame(GameState.FLOP);
             System.out.println(startGameButtonText.getText());
             gameConsole.appendHistoryConsoleText(startGameButtonText.getText());
         });
 
         decreaseRaiseButton.setOnAction(event -> {
             int oldVal = Integer.valueOf(raiseAmountLabel.getText());
-            if(oldVal > 0) {
+            if(oldVal > 10) {
                 oldVal -= 10;
                 raiseAmountLabel.setText(String.valueOf(oldVal));
                 System.out.println(decreaseButtonText.getText() + oldVal);
@@ -80,19 +103,47 @@ public class MenuButtons {
         });
 
         passButton.setOnAction(event -> {
+            if(newGameGridPane.getGame().getStateOfTheGame() == GameState.FLOP){
+                this.newGameGridPane.putCardsOnFlop();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.TURN) {
+                this.newGameGridPane.putCardOnTurn();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.RIVER) {
+                this.newGameGridPane.putCardOnRiver();
+                callButton.setDisable(true);
+            }
+
             System.out.println(passButtonText.getText());
             gameConsole.appendHistoryConsoleText(passButtonText.getText());
         });
 
         callButton.setOnAction(event -> {
+            if(newGameGridPane.getGame().getStateOfTheGame() == GameState.FLOP){
+                this.newGameGridPane.putCardsOnFlop();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.TURN) {
+                this.newGameGridPane.putCardOnTurn();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.RIVER) {
+                this.newGameGridPane.putCardOnRiver();
+                callButton.setDisable(true);
+            }
+
             System.out.println(callButtonText.getText());
             gameConsole.appendHistoryConsoleText(callButtonText.getText());
         });
 
         raiseButton.setOnAction(event -> {
+            if(newGameGridPane.getGame().getStateOfTheGame() == GameState.FLOP){
+                this.newGameGridPane.putCardsOnFlop();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.TURN) {
+                this.newGameGridPane.putCardOnTurn();
+            } else if(newGameGridPane.getGame().getStateOfTheGame() == GameState.RIVER) {
+                this.newGameGridPane.putCardOnRiver();
+                callButton.setDisable(true);
+            }
             System.out.println(raiseButtonText.getText() + raiseAmountLabel.getText());
             gameConsole.appendHistoryConsoleText(raiseButtonText.getText() + raiseAmountLabel.getText());
         });
+
+
 
 
 

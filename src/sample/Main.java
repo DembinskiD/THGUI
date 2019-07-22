@@ -16,6 +16,7 @@ public class Main extends Application {
     static int sceneHeight = 600;
     static int cardHeight = sceneHeight/4;
     static double cardWidth = cardHeight/1.7;
+    static String cardRewers = "blue_back.png";
 
 // stage > scene > pane > node
     @Override
@@ -23,6 +24,7 @@ public class Main extends Application {
         primaryStage.setTitle("Texas Hold'em");
         Button exitBtn = new Button("Exit");
         Button newGameBtn = new Button("New Game");
+        Button optionsBtn = new Button("Options");
         //Button actions
         exitBtn.setOnAction(event -> primaryStage.close());
         newGameBtn.setOnAction(event -> new Game());
@@ -34,6 +36,7 @@ public class Main extends Application {
         pane.getChildren().addAll(logoView, newGameBtn, exitBtn);
         pane.setAlignment(Pos.CENTER);
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("http://www.iconninja.com/files/281/254/528/poker-icon.png"));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

@@ -11,7 +11,7 @@ public class OneCardRectangle {
 
 
     public OneCardRectangle() {
-        cardsStack.setWidth(Main.cardWidth);
+        cardsStack.setWidth(Main.cardWidth + 20);
         cardsStack.setHeight(Main.cardHeight);
         cardsStack.setArcHeight(20);
         cardsStack.setArcWidth(20);
