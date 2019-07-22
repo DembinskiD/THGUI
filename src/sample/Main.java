@@ -28,12 +28,13 @@ public class Main extends Application {
         //Button actions
         exitBtn.setOnAction(event -> primaryStage.close());
         newGameBtn.setOnAction(event -> new Game());
+        optionsBtn.setOnAction(event -> new OptionsClass());
         VBox pane = new VBox(10);
         Image image = new Image("https://cdn.howtoplay.org/wp-content/uploads/2016/03/Texas-Holdem-logo.png");
         ImageView logoView = new ImageView(image);
         Scene scene = new Scene(pane, 500, 500);
         pane.setStyle("-fx-background-color: green;");
-        pane.getChildren().addAll(logoView, newGameBtn, exitBtn);
+        pane.getChildren().addAll(logoView, newGameBtn, optionsBtn, exitBtn);
         pane.setAlignment(Pos.CENTER);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("http://www.iconninja.com/files/281/254/528/poker-icon.png"));
