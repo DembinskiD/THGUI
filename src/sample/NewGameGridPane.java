@@ -86,6 +86,9 @@ public class NewGameGridPane {
         newGameStage.setResizable(false);
         newGameStage.setScene(newGameScene);
         newGameStage.show();
+
+
+
     }
 
     public Group getFlopCardsGroup() {

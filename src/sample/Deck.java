@@ -10,7 +10,7 @@ public class Deck {
     public int maxCardsInDeck;
     public int AmountCardsInDeck;
     protected Stack<Card> deckStack  = new Stack<>();
-    private String cardBackURL = "sample/Graphics/" + Main.cardRewers;
+    private String cardBackURL = Main.cardRewers;
     private ImageView cardBackImageView;
 
 

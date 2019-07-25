@@ -27,6 +27,8 @@ public class Card {
 
     }
 
+
+
     //Getters
     public CardRank getRank() {
         return rank;

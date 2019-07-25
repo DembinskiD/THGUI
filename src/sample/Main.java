@@ -14,9 +14,16 @@ public class Main extends Application {
     //rozmiary sceny i kart
     static int sceneWidth = 1000;
     static int sceneHeight = 600;
+    static int optionsSceneWidth = 640;
+    static int optionsSceneHeight = 480;
     static int cardHeight = sceneHeight/4;
     static double cardWidth = cardHeight/1.7;
-    static String cardRewers = "blue_back.png";
+    static int optionsCardHeight = optionsSceneHeight/7;
+    static double optionsCardWidth = optionsCardHeight/1.7;
+
+
+
+    static String cardRewers = "sample/Graphics/blue_back.png";
 
 // stage > scene > pane > node
     @Override
@@ -41,6 +48,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
+
 
 
 
