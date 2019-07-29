@@ -3,7 +3,7 @@ package sample;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Card {
+public class Card{
     private CardRank rank;
     private CardColor color;
     private String imageURL;
@@ -77,12 +77,29 @@ public class Card {
         return this.color.compareCardColors(card.color);
     }
 
-    public boolean compareRanks(Card color) {
-        return this.rank.isBiggerThan(color.rank);
+    public boolean compareRanks(Card karta) {
+        return this.rank.isBiggerThan(karta.rank);
     }
+
+    public int compareRanksByNumber(Card card) {
+        if(this.getRank().number < card.getRank().number) return -1;
+        else if(this.getRank().number == card.getRank().number) return 0;
+        else return 1;
+    }
+
+    public boolean areNeighbours(Card card) {
+        return this.getRank().number - card.getRank().number == 1 || this.getRank().number - card.getRank().number == -1;
+    }
+
+    public boolean areNeighbours(Card card1, Card card2) {
+        return card1.getRank().number - card2.getRank().number == 1 || card1.getRank().number - card2.getRank().number == -1;
+    }
+
 
     @Override
     public String toString() {
         return rank + " " + color + " " + imageURL;
     }
+
+
 }
