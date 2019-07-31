@@ -22,7 +22,7 @@ public enum CardRank {
         this.number = number;
     }
 
-    private CardRank(int number, String link) {
+     CardRank(int number, String link) {
         this.number = number;
         this.link = link;
     }

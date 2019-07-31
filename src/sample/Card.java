@@ -3,7 +3,9 @@ package sample;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class Card{
+import java.util.Objects;
+
+public class Card implements Comparable{
     private CardRank rank;
     private CardColor color;
     private String imageURL;
@@ -102,4 +104,25 @@ public class Card{
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return rank == card.rank &&
+                color == card.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rank, color);
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if( this == o ) return 0;
+        if( o == null || getClass() != o.getClass()) return 1;
+        Card card = (Card) o;
+        return getRank().number - card.getRank().number > 0 ? 1 : -1;
+    }
 }
