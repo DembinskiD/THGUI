@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Player {
     private Text playerName = new Text();
@@ -12,10 +14,23 @@ public class Player {
     private PokerLayout pokerLayout;
     private ArrayList<Card> cardsContainedInLayout = new ArrayList<>();
 
+    public ArrayList<Card> getCardsContainedInLayout() {
+        return cardsContainedInLayout;
+    }
+
+    public String getPlayerName() {
+        return playerName.getText();
+    }
+
     public Player(String playerName, int initialPlayerCash) {
         this.playerName.setText(playerName);
         this.initialPlayerCash = initialPlayerCash;
         this.pokerLayout = PokerLayout.NONE;
+        this.playerStatus = PlayerStatus.INGAME;
+    }
+
+    public Card getHighestCardFromLayout() {
+        return Collections.max(cardsContainedInLayout, Comparator.comparing(s -> s.getRank()));
     }
 
     public PokerLayout getPokerLayout() {
@@ -62,4 +77,8 @@ public class Player {
                 ",cardsContainedInLayout=" + cardsContainedInLayout +
                 '}';
     }
+
+
+
+
 }

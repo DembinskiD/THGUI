@@ -14,7 +14,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CardTest" options="--add-modules=javafx.graphics,javafx.fxml,javafx.controls,javafx.base" />
+      <module name="CardTest" options="--add-modules=javafx.graphics,javafx.fxml,javafx.controls,javafx.base,jdk.hotspot.agent --add-exports=jdk.hotspot.agent/sun.jvm.hotspot.utilities=ALL-UNNAMED" />
     </option>
   </component>
 </project>
