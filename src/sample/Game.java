@@ -1,5 +1,7 @@
 package sample;
 
+import sample.GUI.NewGameGridPane;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -11,15 +13,16 @@ public class Game {
     private ArrayList<Card> turnCards = new ArrayList<>();
     private ArrayList<Card> riverCards = new ArrayList<>();
     private GameState stateOfTheGame;
+    public static int initialPlayerCash = 100;
 
     public Game() {
-        this.playerList = new PlayerManager(2);
+        this.playerList = new PlayerManager(1, 1);
         this.moneyManager = new MoneyManager(this);
         this.playingDeck = new Deck();
 
-
+        playerList.getListOfPlayers().forEach(player -> player.setPlayerStatus(PlayerStatus.INGAME));
         firstCardDistributionToPlayersHands();
-        //bet here
+        decisionTurn();
         flop();
         //bet here
         turn();
@@ -28,6 +31,15 @@ public class Game {
 
         this.newGameGridPane  = new NewGameGridPane(this);
 
+    }
+
+    private void decisionTurn() {
+        for(Player player : getPlayerList().getListOfRealPlayers()){
+            System.out.println(player);
+        }
+        for(OponentAI opponent : getPlayerList().getListOfNPC()){
+            opponent.decide();
+        }
     }
 
     public GameState getStateOfTheGame() {
