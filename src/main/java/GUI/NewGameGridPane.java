@@ -1,5 +1,9 @@
-package sample;
+package GUI;
 
+import Engine.Card;
+import Engine.Game;
+import Engine.GameState;
+import Engine.Main;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,19 +17,6 @@ import javafx.stage.Stage;
 public class NewGameGridPane {
     private Game game;
     private GameConsole gameConsole = new GameConsole();
-    private MenuButtons leftMenuButtons = new MenuButtons(this, gameConsole);
-    private GridPane newGameLayoutPane = new GridPane();
-    private Scene newGameScene;
-    private OneCardRectangle cardsStack = new OneCardRectangle();
-    private ColumnConstraints column1 = new ColumnConstraints();
-    private ColumnConstraints column2 = new ColumnConstraints();
-    private ColumnConstraints column3 = new ColumnConstraints();
-    private ColumnConstraints column4 = new ColumnConstraints();
-    private FlopRectangle flopCardsRectangle = new FlopRectangle();
-    private OneCardRectangle turnRectangle = new OneCardRectangle();
-    private OneCardRectangle riverRectangle = new OneCardRectangle();
-    private PlayersCardsRectangle playerCardsRectangle = new PlayersCardsRectangle();
-    private PlayersCardsRectangle opponentCardsRectangle = new PlayersCardsRectangle();
     private Group cardsStackGroup = new Group();
     private Group playerCardsGroup = new Group();
     private Group opponentCardsGroup = new Group();
@@ -39,23 +30,34 @@ public class NewGameGridPane {
 
     public NewGameGridPane(Game game) {
         this.game = game;
+        GridPane newGameLayoutPane = new GridPane();
         newGameLayoutPane.setMinSize(Main.sceneWidth, Main.sceneHeight);
         newGameLayoutPane.setPadding(new Insets(30, 5, 5, 30));
         newGameLayoutPane.setVgap(20);
         newGameLayoutPane.setHgap(20);
         newGameLayoutPane.setAlignment(Pos.CENTER);
 
+        ColumnConstraints column1 = new ColumnConstraints();
         column1.setPercentWidth(20);
+        ColumnConstraints column2 = new ColumnConstraints();
         column2.setPercentWidth(40);
+        ColumnConstraints column3 = new ColumnConstraints();
         column3.setPercentWidth(10);
+        ColumnConstraints column4 = new ColumnConstraints();
         column4.setPercentWidth(30);
         newGameLayoutPane.getColumnConstraints().addAll(column1, column2, column3, column4);
 
+        OneCardRectangle cardsStack = new OneCardRectangle();
         cardsStackGroup.getChildren().add(cardsStack.getCardsStack());
+        PlayersCardsRectangle playerCardsRectangle = new PlayersCardsRectangle();
         playerCardsGroup.getChildren().add(playerCardsRectangle.getPlayersCardsRectangle());
+        PlayersCardsRectangle opponentCardsRectangle = new PlayersCardsRectangle();
         opponentCardsGroup.getChildren().add(opponentCardsRectangle.getPlayersCardsRectangle());
+        FlopRectangle flopCardsRectangle = new FlopRectangle();
         flopCardsGroup.getChildren().add(flopCardsRectangle.getThreeCardRectangle());
+        OneCardRectangle turnRectangle = new OneCardRectangle();
         turnCardGroup.getChildren().add(turnRectangle.getCardsStack());
+        OneCardRectangle riverRectangle = new OneCardRectangle();
         riverCardGroup.getChildren().add(riverRectangle.getCardsStack());
 
         GridPane.setHalignment(riverCardGroup, HPos.LEFT);
@@ -66,6 +68,7 @@ public class NewGameGridPane {
         GridPane.setHalignment(cardsStackGroup, HPos.CENTER);
 
         //lewa kolumna
+        MenuButtons leftMenuButtons = new MenuButtons(this, gameConsole);
         newGameLayoutPane.add(leftMenuButtons.getMenuButtons(), 0, 0);
         newGameLayoutPane.add(cardsStackGroup, 0 ,1);
         newGameLayoutPane.add(gameConsole.getHistoryConsole(), 0, 2);
@@ -78,11 +81,10 @@ public class NewGameGridPane {
         newGameLayoutPane.add(opponentCardsGroup, 1, 0);
 
 
-
-        newGameScene = new Scene(newGameLayoutPane, Main.sceneWidth, Main.sceneHeight);
+        Scene newGameScene = new Scene(newGameLayoutPane, Main.sceneWidth, Main.sceneHeight);
         Stage newGameStage = new Stage();
         newGameStage.getIcons().add(new Image("http://www.iconninja.com/files/281/254/528/poker-icon.png"));
-        newGameStage.setTitle("TexasHoldEm - New Game");
+        newGameStage.setTitle("TexasHoldEm - New Engine.Game");
         newGameStage.setResizable(false);
         newGameStage.setScene(newGameScene);
         newGameStage.show();
@@ -108,7 +110,7 @@ public class NewGameGridPane {
     }
 
     public void putCardsToPlayersHands() {
-        System.out.println("Player cards");
+        System.out.println("Engine.Player cards");
         double posX = 10;
         System.out.println(this.game.getPlayerList().getListOfPlayers().get(0).getPlayerCardsList().size());
         for(Card card : this.game.getPlayerList().getListOfPlayers().get(0).getPlayerCardsList()){

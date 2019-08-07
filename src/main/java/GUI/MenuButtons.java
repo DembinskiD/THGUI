@@ -1,5 +1,6 @@
-package sample;
+package GUI;
 
+import Engine.GameState;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -11,7 +12,7 @@ import javafx.scene.text.Text;
 
 
 public class MenuButtons {
-    private Button startGameButton = new Button("Start Game");
+    private Button startGameButton = new Button("Start Engine.Game");
     private Text startGameButtonText = new Text("Starting new game.");
     private Button decreaseRaiseButton = new Button("-");
     private Text decreaseButtonText = new Text("Decreased value to ");
@@ -27,13 +28,13 @@ public class MenuButtons {
     private Button raiseButton = new Button("Raise");
     private Text raiseButtonText = new Text("Raised by ");
     private VBox menuButtons = new VBox();
-    private HBox raiseButtons = new HBox();
     public NewGameGridPane newGameGridPane;
 
     public MenuButtons(NewGameGridPane newGameGridPane, GameConsole gameConsole) {
         this.startGameButton.setDisable(false);
         this.callButton.setDisable(false);
         this.newGameGridPane = newGameGridPane;
+        HBox raiseButtons = new HBox();
         raiseButtons.setSpacing(3);
         raiseButtons.getChildren().addAll(decreaseRaiseButton, raiseAmountLabel, increaseRaiseButton);
         raiseButtons.setAlignment(Pos.CENTER);

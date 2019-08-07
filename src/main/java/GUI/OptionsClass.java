@@ -1,5 +1,6 @@
-package sample;
+package GUI;
 
+import Engine.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -35,22 +36,22 @@ public class OptionsClass {
 
 
 
-        ImageView column1View = new ImageView("sample/Graphics/blue_back.png");
+        ImageView column1View = new ImageView("Graphics/blue_back.png");
         column1View.setFitWidth(Main.optionsCardWidth);
         column1View.setFitHeight(Main.optionsCardHeight);
-        ImageView column2View = new ImageView("sample/Graphics/gray_back.png");
+        ImageView column2View = new ImageView("Graphics/gray_back.png");
         column2View.setFitWidth(Main.optionsCardWidth);
         column2View.setFitHeight(Main.optionsCardHeight);
-        ImageView column3View = new ImageView("sample/Graphics/green_back.png");
+        ImageView column3View = new ImageView("Graphics/green_back.png");
         column3View.setFitWidth(Main.optionsCardWidth);
         column3View.setFitHeight(Main.optionsCardHeight);
-        ImageView column4View = new ImageView("sample/Graphics/purple_back.png");
+        ImageView column4View = new ImageView("Graphics/purple_back.png");
         column4View.setFitWidth(Main.optionsCardWidth);
         column4View.setFitHeight(Main.optionsCardHeight);
-        ImageView column5View = new ImageView("sample/Graphics/red_back.png");
+        ImageView column5View = new ImageView("Graphics/red_back.png");
         column5View.setFitWidth(Main.optionsCardWidth);
         column5View.setFitHeight(Main.optionsCardHeight);
-        ImageView column6View = new ImageView("sample/Graphics/yellow_back.png");
+        ImageView column6View = new ImageView("Graphics/yellow_back.png");
         column6View.setFitWidth(Main.optionsCardWidth);
         column6View.setFitHeight(Main.optionsCardHeight);
         ToggleGroup buttonsGroup = new ToggleGroup();
@@ -114,13 +115,13 @@ public class OptionsClass {
 
         applyButton.setOnAction(event -> {
             if(buttonsGroup.getSelectedToggle() != null){
-                Main.cardRewers = "sample/Graphics/" + buttonsGroup.getSelectedToggle().getUserData().toString() + "_back.png";
+                Main.cardRewers = "Engine/Graphics/" + buttonsGroup.getSelectedToggle().getUserData().toString() + "_back.png";
             }
         });
 
         applyAndExit.setOnAction(event -> {
             if(buttonsGroup.getSelectedToggle() != null){
-                Main.cardRewers = "sample/Graphics/" + buttonsGroup.getSelectedToggle().getUserData().toString() + "_back.png";
+                Main.cardRewers = "Engine/Graphics/" + buttonsGroup.getSelectedToggle().getUserData().toString() + "_back.png";
                 optionsStage.close();
             }
         });

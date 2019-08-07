@@ -1,5 +1,6 @@
-package sample;
+package GUI;
 
+import Engine.Main;
 import javafx.geometry.HPos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -8,12 +9,12 @@ import javafx.scene.text.Text;
 public class GameConsole {
     private ScrollPane historyConsole =  new ScrollPane();
     private Text historyConsoleText = new Text();
-    private int sceneHeight = Main.sceneHeight;
-    private int cardHeight = Main.cardHeight;
 
     public GameConsole() {
         historyConsole.setContent(historyConsoleText);
-        historyConsole.setLayoutY(sceneHeight/2 + cardHeight/2 + 20);
+        int sceneHeight = Main.sceneHeight;
+        int cardHeight = Main.cardHeight;
+        historyConsole.setLayoutY(sceneHeight /2 + cardHeight /2 + 20);
         historyConsole.setMinWidth(180);
         historyConsole.setMaxWidth(180);
         historyConsole.setMinHeight(200);

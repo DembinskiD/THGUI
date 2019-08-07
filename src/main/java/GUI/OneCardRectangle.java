@@ -1,10 +1,11 @@
-package sample;
+package GUI;
 
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import Engine.Main;
 
 public class OneCardRectangle {
     private Rectangle cardsStack = new Rectangle();

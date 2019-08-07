@@ -1,5 +1,6 @@
-package sample;
+package GUI;
 
+import Engine.Main;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -11,7 +12,7 @@ public class FlopRectangle {
 
 
     public FlopRectangle() {
-        flopRectangle.setWidth(40 + 3*Main.cardWidth);
+        flopRectangle.setWidth(40 + 3* Main.cardWidth);
         flopRectangle.setHeight(Main.cardHeight);
         flopRectangle.setArcHeight(20);
         flopRectangle.setArcWidth(20);

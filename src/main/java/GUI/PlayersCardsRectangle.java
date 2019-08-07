@@ -1,6 +1,7 @@
-package sample;
+package GUI;
 
 
+import Engine.Main;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -11,7 +12,7 @@ public class PlayersCardsRectangle {
     private Rectangle playersCardsRectangle = new Rectangle();
 
     public PlayersCardsRectangle() {
-        playersCardsRectangle.setWidth(30 + 2*Main.cardWidth);
+        playersCardsRectangle.setWidth(30 + 2* Main.cardWidth);
         playersCardsRectangle.setHeight(Main.cardHeight);
         playersCardsRectangle.setArcHeight(20);
         playersCardsRectangle.setArcWidth(20);
