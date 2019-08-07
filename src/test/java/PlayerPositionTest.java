@@ -1,4 +1,4 @@
-import Engine.PlayerPosition;
+import pl.cardtest.PlayerPosition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

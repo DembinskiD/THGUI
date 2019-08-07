@@ -1,4 +1,4 @@
-import Engine.*;
+import pl.cardtest.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -56,9 +56,8 @@ class LayoutComparingTest {
         listOfPlayers.add(player2);
 
         LayoutComparing comparando = new LayoutComparing(listOfPlayers);
-        System.out.println(comparando.getWinner());
 
-        Assertions.assertTrue(comparando.getWinner().getPokerLayout().equals(PokerLayout.FLUSH));
+        Assertions.assertEquals(comparando.getWinner().getPokerLayout(), PokerLayout.ROYAL_FLUSH);
     }
 
     @Test
@@ -111,7 +110,6 @@ class LayoutComparingTest {
         listOfPlayers.add(player2);
 
         LayoutComparing comparando = new LayoutComparing(listOfPlayers);
-        System.out.println(comparando.getWinner());
 
         Assertions.assertEquals("Dawid",comparando.getWinner().getPlayerName());
     }

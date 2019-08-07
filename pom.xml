@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>CardTest</groupId>
+    <groupId>pl.cardtest</groupId>
     <artifactId>CardTest</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
@@ -9,13 +9,55 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>10</source>
                     <target>10</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <minmemory>128m</minmemory>
+                    <maxmemory>512</maxmemory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
 
     
 </project>
