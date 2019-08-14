@@ -1,7 +1,7 @@
-import pl.cardtest.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.cardtest.*;
 
 class OponentAITest {
     private static final Player player = new Player("Dawid", 100, PlayerPosition.SMALL_BLIND);

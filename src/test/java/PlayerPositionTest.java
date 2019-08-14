@@ -1,6 +1,6 @@
-import pl.cardtest.PlayerPosition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.cardtest.PlayerPosition;
 
 class PlayerPositionTest {
 

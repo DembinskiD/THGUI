@@ -15,6 +15,8 @@ public class Card implements Comparable{
 
 
     //Konstruktor
+
+
     public Card(CardRank rank, CardColor color){
         this.rank = rank;
         this.color = color;

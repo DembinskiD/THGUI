@@ -1,9 +1,5 @@
 package pl.cardtest.GUI;
 
-import pl.cardtest.Card;
-import pl.cardtest.Game;
-import pl.cardtest.GameState;
-import pl.cardtest.Main;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +9,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import pl.cardtest.Card;
+import pl.cardtest.Game;
+import pl.cardtest.GameState;
+import pl.cardtest.Main;
 
 public class NewGameGridPane {
     private final Game game;

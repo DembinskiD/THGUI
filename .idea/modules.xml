@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CardTest.iml" filepath="$PROJECT_DIR$/CardTest.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/javafx-sdk-11.0.2/lib/lib.iml" filepath="$USER_HOME$/Downloads/javafx-sdk-11.0.2/lib/lib.iml" />
     </modules>
   </component>
 </project>

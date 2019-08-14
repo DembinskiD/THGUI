@@ -1,7 +1,7 @@
-import pl.cardtest.OponentAI;
-import pl.cardtest.PlayerManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.cardtest.OponentAI;
+import pl.cardtest.PlayerManager;
 
 class PlayerManagerTest {
 

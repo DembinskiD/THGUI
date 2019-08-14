@@ -1,10 +1,10 @@
 package pl.cardtest.GUI;
 
-import pl.cardtest.Main;
 import javafx.geometry.HPos;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import pl.cardtest.Main;
 
 class GameConsole {
     private final ScrollPane historyConsole =  new ScrollPane();

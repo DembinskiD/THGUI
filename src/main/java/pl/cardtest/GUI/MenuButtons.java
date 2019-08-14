@@ -1,6 +1,5 @@
 package pl.cardtest.GUI;
 
-import pl.cardtest.GameState;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,6 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import pl.cardtest.GameState;
 
 
 class MenuButtons {

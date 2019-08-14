@@ -1,6 +1,5 @@
 package pl.cardtest.GUI;
 
-import pl.cardtest.Main;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import pl.cardtest.Main;
 
 public class OptionsClass {
     private final Scene optionsScene;

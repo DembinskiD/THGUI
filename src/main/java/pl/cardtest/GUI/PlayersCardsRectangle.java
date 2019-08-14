@@ -1,12 +1,12 @@
 package pl.cardtest.GUI;
 
 
-import pl.cardtest.Main;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import pl.cardtest.Main;
 
 class PlayersCardsRectangle {
     private final Rectangle playersCardsRectangle = new Rectangle();

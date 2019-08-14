@@ -1,6 +1,6 @@
-import pl.cardtest.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.cardtest.*;
 
 import java.util.ArrayList;
 
