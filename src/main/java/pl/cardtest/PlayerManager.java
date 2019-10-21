@@ -11,8 +11,18 @@ public class PlayerManager {
 
     public PlayerManager(int initialPlayersAmount, int initialComputerOpponents) {
         for (int i = 0; i<  initialPlayersAmount; i++){
-            addPlayer("pl.cardtest.Player " + String.valueOf(i + 1), Game.initialPlayerCash);
+            addPlayer("Player " + String.valueOf(i + 1), Game.initialPlayerCash);
         }
+        for (int i = 3; i<  3 + initialComputerOpponents; i++){
+            addOpponent("Opponent " + String.valueOf(i + 1), Game.initialPlayerCash);
+        }
+
+        listOfPlayers.addAll(listOfRealPlayers);
+        listOfPlayers.addAll(listOfNPC);
+    }
+
+    public PlayerManager(String playerName, int initialComputerOpponents) {
+        this.listOfRealPlayers.add(new Player(playerName, Game.initialPlayerCash));
         for (int i = 3; i<  3 + initialComputerOpponents; i++){
             addOpponent("Opponent " + String.valueOf(i + 1), Game.initialPlayerCash);
         }

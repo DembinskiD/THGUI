@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<GridPane xmlns="http://javafx.com/javafx/11" fx:controller="pl.cardtest.GUI.FXMLControllers.GameCreatorController" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="20" vgap="20">
+    <padding>
+        <Insets top="30" right="5" bottom="30" left="30"/>
+    </padding>
+
+        <Label fx:id="oppsAmount" text="Opponents amount: " GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
+        <TextField fx:id="oppsAmountText" text="1" minWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+
+
+        <Label fx:id="playersName" text="Players' name: " GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
+        <TextField fx:id="playersNameText" text="Dawid " minWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+
+
+        <Label fx:id="startingCash" text="Starting cash: " GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
+        <TextField fx:id="startingCashText" minWidth="100" text="100" GridPane.rowIndex="2" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+
+
+
+
+    <Button text="New Game" fx:id="newGameButton" onAction="#newGame" GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER"/>
+    <Button text="Exit" fx:id="exitButton" onAction="#exit" GridPane.rowIndex="3" GridPane.columnIndex="1" alignment="CENTER"/>
+
+
+    <stylesheets>
+        <URL value="@/StyleSheets/SceneStyle.css"/>
+    </stylesheets>
+</GridPane>

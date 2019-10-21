@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pl.cardtest.GUI.FXMLControllers.OptionsMenuController"
+      prefWidth="400" prefHeight="400"
+      alignment="CENTER">
+
+    <fx:define>
+        <ToggleGroup fx:id="toggleGroup"/>
+    </fx:define>
+
+    <VBox fx:id="card_vbox">
+        <HBox fx:id="middle_content">
+            <VBox fx:id="v1">
+                <ImageView fx:id="view1">
+                    <Image url="/blue_back.png" />
+                </ImageView>
+                <RadioButton fx:id="blue_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+            <VBox fx:id="v2">
+                <ImageView fx:id="view2">
+                    <Image url="/green_back.png"/>
+                </ImageView>
+                <RadioButton fx:id="green_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+            <VBox fx:id="v3">
+                <ImageView fx:id="view3">
+                    <Image url="/gray_back.png"/>
+                </ImageView>
+                <RadioButton fx:id="gray_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+            <VBox fx:id="v4">
+                <ImageView fx:id="view4">
+                    <Image url="/purple_back.png"/>
+                </ImageView>
+                <RadioButton fx:id="purple_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+            <VBox fx:id="v5">
+                <ImageView  fx:id="view5">
+                    <Image url="/red_back.png"/>
+                </ImageView>
+                <RadioButton fx:id="red_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+            <VBox fx:id="v6">
+                <ImageView fx:id="view6">
+                    <Image url="/yellow_back.png"/>
+                </ImageView>
+                <RadioButton fx:id="yellow_back" toggleGroup="$toggleGroup" alignment="CENTER"/>
+            </VBox>
+
+
+        </HBox>
+
+        <HBox id="footer-section">
+            <Button text="Apply" fx:id="applyButton" onAction="#applyButtonAction"/>
+            <Button text="Apply and Exit" fx:id="applyAndExitButton" onAction="#applyAndExitButtonAction"/>
+            <Button text="Exit" fx:id="exitButton" onAction="#exitButtonAction"/>
+        </HBox>
+
+    </VBox>
+
+
+    <stylesheets>
+        <URL value="@/StyleSheets/SceneStyle.css"/>
+    </stylesheets>
+</VBox>
+
+
+
+
+
+
+

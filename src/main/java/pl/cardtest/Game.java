@@ -12,32 +12,57 @@ public class Game {
     private final ArrayList<Card> turnCards = new ArrayList<>();
     private final ArrayList<Card> riverCards = new ArrayList<>();
     private GameState stateOfTheGame;
-    public static final int initialPlayerCash = 100;
+    public static int initialPlayerCash = 100;
+    private NewGameGridPane newGameGridPane;
 
-    public Game() {
+    public Game() throws Exception {
         this.playerList = new PlayerManager(1, 1);
-        this.moneyManager = new MoneyManager();
+        this.moneyManager = new MoneyManager(20);
         this.playingDeck = new Deck();
-
+        newGameGridPane = new NewGameGridPane(this);
         playerList.getListOfPlayers().forEach(player -> player.setPlayerStatus(PlayerStatus.INGAME));
         firstCardDistributionToPlayersHands();
-        decisionTurn();
+        playerDecisionTurn();
         flop();
-        //bet here
+        playerDecisionTurn();
         turn();
-        //bet here
+        playerDecisionTurn();
         river();
-
-        NewGameGridPane newGameGridPane = new NewGameGridPane(this);
-
     }
 
-    private void decisionTurn() {
+    public Game(int opponentAmounts, String playerName, int initialPlayerCash) throws Exception {
+        Game.initialPlayerCash = initialPlayerCash;
+        this.playerList = new PlayerManager(playerName, opponentAmounts);
+        this.moneyManager = new MoneyManager(20);
+        this.playingDeck = new Deck();
+        newGameGridPane = new NewGameGridPane(this);
+        playerList.getListOfPlayers().forEach(player -> player.setPlayerStatus(PlayerStatus.INGAME));
+        firstCardDistributionToPlayersHands();
+        playerDecisionTurn();
+        flop();
+        playerDecisionTurn();
+        turn();
+        playerDecisionTurn();
+        river();
+    }
+
+
+    private void playerDecisionTurn() {
+        //todo do zrobienia tura decyzji gracza, pozniej tura decyzji komputera
         for(Player player : getPlayerList().getListOfRealPlayers()){
-            System.out.println(player);
-        }
-        for(OponentAI opponent : getPlayerList().getListOfNPC()){
-            opponent.decide();
+            if(newGameGridPane.getCallButton().isPressed()) {
+                moneyManager.setBetCash(Integer.parseInt(newGameGridPane.getRaiseAmountLabel().getText()));
+                player.setPlayerStatus(PlayerStatus.CALL);
+            }
+            if(newGameGridPane.getAllInButton().isPressed()) {
+                player.setPlayerStatus(PlayerStatus.ALLIN);
+            }
+            if(newGameGridPane.getPassButton().isPressed()) {
+                player.setPlayerStatus(PlayerStatus.PASS);
+            }
+            if(newGameGridPane.getRaiseButton().isPressed()) {
+                player.setPlayerStatus(PlayerStatus.RAISE);
+            }
         }
     }
 

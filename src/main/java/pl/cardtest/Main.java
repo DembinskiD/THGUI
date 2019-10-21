@@ -1,14 +1,11 @@
 package pl.cardtest;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import pl.cardtest.GUI.OptionsClass;
 
 
 public class Main extends Application {
@@ -27,22 +24,11 @@ public class Main extends Application {
 
 // stage > scene > pane > node
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Texas Hold'em");
-        Button exitBtn = new Button("Exit");
-        Button newGameBtn = new Button("New Game");
-        Button optionsBtn = new Button("Options");
-        //Button actions
-        exitBtn.setOnAction(event -> primaryStage.close());
-        newGameBtn.setOnAction(event -> new Game());
-        optionsBtn.setOnAction(event -> new OptionsClass());
-        VBox pane = new VBox(10);
-        Image image = new Image("main_menu_logo.png");
-        ImageView logoView = new ImageView(image);
-        Scene scene = new Scene(pane, 500, 500);
-        pane.setStyle("-fx-background-color: green;");
-        pane.getChildren().addAll(logoView, newGameBtn, optionsBtn, exitBtn);
-        pane.setAlignment(Pos.CENTER);
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/FXMLs/MainMenu.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 500, 500);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setResizable(false);

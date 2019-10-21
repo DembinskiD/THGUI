@@ -75,7 +75,7 @@ public class Player implements PokerLayouts{
 
     @Override
     public String toString() {
-        return "pl.cardtest.Player{" +
+        return "Player{" +
                 "playerName=" + playerName.getText() +
                 ", playerCards=" + playerCards +
                 ", playerStatus=" + playerStatus +

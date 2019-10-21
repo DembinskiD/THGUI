@@ -7,11 +7,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import pl.cardtest.Main;
 
-class OneCardRectangle {
+public class CardsRectangle {
     private final Rectangle cardsStack = new Rectangle();
 
 
-    public OneCardRectangle() {
+    public CardsRectangle() {
         cardsStack.setWidth(Main.cardWidth + 20);
         cardsStack.setHeight(Main.cardHeight);
         cardsStack.setArcHeight(20);
@@ -19,7 +19,18 @@ class OneCardRectangle {
         cardsStack.setFill(Color.rgb(0,100,0));
         cardsStack.setStrokeType(StrokeType.INSIDE);
         cardsStack.setStroke(Color.BLACK);
-        GridPane.setHalignment(this.cardsStack, HPos.LEFT);
+        GridPane.setHalignment(this.cardsStack, HPos.CENTER);
+    }
+
+    public CardsRectangle(int cardsCount) {
+        cardsStack.setWidth(cardsCount * Main.cardWidth + 20);
+        cardsStack.setHeight(Main.cardHeight);
+        cardsStack.setArcHeight(20);
+        cardsStack.setArcWidth(20);
+        cardsStack.setFill(Color.rgb(0,100,0));
+        cardsStack.setStrokeType(StrokeType.INSIDE);
+        cardsStack.setStroke(Color.BLACK);
+        GridPane.setHalignment(this.cardsStack, HPos.CENTER);
     }
 
 

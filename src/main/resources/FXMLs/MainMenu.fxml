@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx/11" fx:controller="pl.cardtest.GUI.FXMLControllers.MainMenuController" xmlns:fx="http://javafx.com/fxml" spacing="10" prefHeight="500" prefWidth="500" alignment="CENTER">
+    <ImageView>
+        <Image url="/main_menu_logo.png"/>
+    </ImageView>
+    <Button text="New Game" fx:id="newGameButton" onAction="#startNewGame"/>
+    <Button text="Options" fx:id="optionsButton" onAction="#openOptions"/>
+    <Button text="Exit" fx:id="exitButton" onAction="#exitGame"/>
+    <stylesheets>
+        <URL value="@/StyleSheets/SceneStyle.css"/>
+    </stylesheets>
+</VBox>

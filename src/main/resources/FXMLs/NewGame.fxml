@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.shape.Rectangle?>
+<GridPane xmlns="http://javafx.com/javafx/11" fx:controller="pl.cardtest.GUI.FXMLControllers.NewGameController" xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500" alignment="CENTER" hgap="20" vgap="20" >
+    <padding>
+        <Insets top="30" right="5" bottom="30" left="30"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="20"/>
+        <ColumnConstraints percentWidth="10"/>
+        <ColumnConstraints percentWidth="70" halignment="CENTER"/>
+    </columnConstraints>
+
+
+
+
+    <VBox fx:id="leftMenuButtons" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Button text="Start Game" fx:id="startGameButton" onAction="#startGameButtonAction"/>
+        <Button text="Call" fx:id="callButton" onAction="#callButtonAction"/>
+
+
+        <GridPane fx:id="raiseButtonControls" GridPane.halignment="CENTER">
+            <Button text="-" fx:id="decreaseButton" onAction="#decreaseButtonAction" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label text="0" fx:id="raiseLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Button text="+" fx:id="increaseButton" onAction="#increaseButtonAction" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        </GridPane>
+        <Button fx:id="raiseButton" text="Raise" onAction="#raiseButtonAction"/>
+        <Button text="All in" fx:id="allInButton" onAction="#allInButtonAction"/>
+        <Button text="Pass" fx:id="passButton" onAction="#passButtonAction"/>
+    </VBox>
+
+    <ScrollPane fx:id="historyConsole" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"/>
+
+    <Rectangle fx:id="cardStackRect" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER"/>
+
+    <Rectangle fx:id="OpponentCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+    <GridPane fx:id="FlopCards" GridPane.columnIndex="2" GridPane.rowIndex="1" alignment="CENTER" vgap="10" hgap="10">
+        <Rectangle fx:id="FlopCardStack" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Rectangle fx:id="TurnCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Rectangle fx:id="RiverCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+    </GridPane>
+
+    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <Label fx:id="playerLabel" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Rectangle fx:id="PlayerCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    </GridPane>
+
+
+
+
+
+
+    <stylesheets>
+        <URL value="@/StyleSheets/SceneStyle.css"/>
+    </stylesheets>
+</GridPane>

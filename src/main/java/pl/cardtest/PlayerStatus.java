@@ -1,5 +1,5 @@
 package pl.cardtest;
 
 public enum PlayerStatus {
-    INGAME, CALL, BET
+    INGAME, CALL, BET, ALLIN, PASS, RAISE;
 }

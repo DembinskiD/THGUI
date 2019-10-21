@@ -1,0 +1,111 @@
+.root{
+    -fx-background-color: green;
+    -fx-font-size: 11pt;
+}
+
+.button{
+   -fx-background-color: white;
+   -fx-font-size: 9pt;
+   -fx-text-align: center;
+   -fx-border: none;
+   -fx-color: white;
+   -fx-text-decoration: none;
+   -fx-display: inline-block;
+}
+
+#newGameButton, #optionsButton, #exitButton {
+       -fx-alignment: center;
+       -fx-spacing: 10px;
+       -fx-min-width: 100px;
+       -fx-background-color: white;
+       -fx-font-size: 9pt;
+       -fx-text-align: center;
+       -fx-border: none;
+       -fx-color: white;
+       -fx-text-decoration: none;
+       -fx-display: inline-block;
+}
+
+.button:hover {
+    -fx-background-color: #F3F2F2;
+    }
+
+
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-padding: 4px;
+}
+
+.radio-button .dot {
+    -fx-padding: 3px;
+}
+
+
+#v1, #v2, #v3, #v4, #v5, #v6, #middle_content, #card_vbox, #footer-section{
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+}
+#leftMenuButtons {
+    -fx-spacing: 6px;
+    -fx-alignment: center;
+}
+
+#startGameButton, #callButton, #raiseButton, #allInButton, #passButton {
+   -fx-alignment: center;
+   -fx-spacing: 10px;
+   -fx-min-width: 100px;
+   -fx-background-color: white;
+   -fx-font-size: 9pt;
+   -fx-text-align: center;
+   -fx-border: none;
+   -fx-color: white;
+   -fx-text-decoration: none;
+   -fx-display: inline-block;
+}
+
+
+#raiseButtonControls {
+   -fx-font-size: 9pt;
+   -fx-text-alignment: center;
+   -fx-border: none;
+   -fx-color: white;
+   -fx-display: inline-block;
+
+}
+
+
+#decreaseButton, #increaseButton {
+   -fx-min-width: 20px;
+   -fx-background-color: white;
+   -fx-font-size: 9pt;
+   -fx-text-alignment: center;
+   -fx-border: none;
+   -fx-color: white;
+   -fx-display: inline-block;
+}
+
+#centredNodes {
+    -fx-min-width: 600px;
+    -fx-alignment: center;
+}
+
+#historyConsole {
+    -fx-min-width: 180px;
+    -fx-max-width: 180px;
+    -fx-min-height: 200px;
+    -fx-max-height: 200px;
+    -fx-font-size: 10px;
+    -fx-text-alignment: left;
+}
+
+#raiseLabel {
+   -fx-min-width: 56px;
+   -fx-max-width: 56px;
+}
+
+
+#oppsAmount, #playersName, #startingCash {
+    -fx-text-fill: white;
+    -fx-font-size: 10pt;
+}
