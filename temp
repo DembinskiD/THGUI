@@ -1,0 +1,7 @@
+Rectangle tempRect = new Rectangle();
+        tempRect.setFill(Color.BLUE);
+        tempRect.setStroke(Color.WHITE);
+        tempRect.setWidth(Main.cardWidth);
+        tempRect.setHeight(Main.cardHeight);
+        tempRect.setLayoutX(this.cardStackRect.getLayoutX() + 10);
+        tempRect.setLayoutY(this.cardStackRect.getLayoutY());

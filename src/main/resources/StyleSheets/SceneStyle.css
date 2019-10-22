@@ -109,3 +109,7 @@
     -fx-text-fill: white;
     -fx-font-size: 10pt;
 }
+
+#playerLabel, #opponentLabel {
+    -fx-font-weight: bold;
+}

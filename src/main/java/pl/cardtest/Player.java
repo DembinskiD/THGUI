@@ -11,7 +11,12 @@ public class Player implements PokerLayouts{
     private final Text playerName = new Text();
     private final ArrayList<Card> playerCards = new ArrayList<>();
     private PlayerStatus playerStatus;
-    private int initialPlayerCash;
+
+    public int getPlayerCash() {
+        return playerCash;
+    }
+
+    private int playerCash;
     private PokerLayout pokerLayout;
     private ArrayList<Card> cardsContainedInLayout = new ArrayList<>();
 
@@ -31,7 +36,7 @@ public class Player implements PokerLayouts{
 
     public Player(String playerName, int initialPlayerCash, PlayerPosition playerPosition) {
         this.playerName.setText(playerName);
-        this.initialPlayerCash = initialPlayerCash;
+        this.playerCash = initialPlayerCash;
         this.pokerLayout = PokerLayout.NONE;
         this.playerStatus = PlayerStatus.INGAME;
         this.setPlayerPosition(playerPosition);
@@ -39,9 +44,13 @@ public class Player implements PokerLayouts{
 
     public Player(String playerName, int initialPlayerCash) {
         this.playerName.setText(playerName);
-        this.initialPlayerCash = initialPlayerCash;
+        this.playerCash = initialPlayerCash;
         this.pokerLayout = PokerLayout.NONE;
         this.playerStatus = PlayerStatus.INGAME;
+    }
+
+    public PlayerPosition getPlayerPosition() {
+        return playerPosition;
     }
 
     public Card getHighestCardFromLayout() {
@@ -79,7 +88,7 @@ public class Player implements PokerLayouts{
                 "playerName=" + playerName.getText() +
                 ", playerCards=" + playerCards +
                 ", playerStatus=" + playerStatus +
-                ", initialPlayerCash=" + initialPlayerCash +
+                ", initialPlayerCash=" + playerCash +
                 ", pokerLayout=" + pokerLayout +
                 ",cardsContainedInLayout=" + cardsContainedInLayout +
                 ",playerPosition=" + playerPosition +

@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Rectangle?>
-<GridPane xmlns="http://javafx.com/javafx/11" fx:controller="pl.cardtest.GUI.FXMLControllers.NewGameController" xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500" alignment="CENTER" hgap="20" vgap="20" >
+<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500" alignment="CENTER" hgap="20" vgap="20" fx:id="root" >
     <padding>
         <Insets top="30" right="5" bottom="30" left="30"/>
     </padding>
@@ -41,15 +41,27 @@
 
     <Rectangle fx:id="cardStackRect" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER"/>
 
-    <Rectangle fx:id="OpponentCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="0" alignment="CENTER" vgap="10" hgap="10">
+        <Rectangle fx:id="OpponentCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER">
+            <Label fx:id="opponentLabel"/>
+            <Label fx:id="opponentPosition"/>
+            <Label fx:id="opponentCash"/>
+        </VBox>
+    </GridPane>
+
     <GridPane fx:id="FlopCards" GridPane.columnIndex="2" GridPane.rowIndex="1" alignment="CENTER" vgap="10" hgap="10">
         <Rectangle fx:id="FlopCardStack" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <Rectangle fx:id="TurnCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
         <Rectangle fx:id="RiverCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
     </GridPane>
 
-    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-        <Label fx:id="playerLabel" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2" alignment="CENTER" vgap="10" hgap="10">
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER">
+            <Label fx:id="playerLabel"/>
+            <Label fx:id="playerPosition"/>
+            <Label fx:id="playerCash"/>
+        </VBox>
         <Rectangle fx:id="PlayerCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     </GridPane>
 
@@ -62,3 +74,4 @@
         <URL value="@/StyleSheets/SceneStyle.css"/>
     </stylesheets>
 </GridPane>
+

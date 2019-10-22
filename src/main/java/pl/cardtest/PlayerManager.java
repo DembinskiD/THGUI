@@ -3,32 +3,24 @@ package pl.cardtest;
 import java.util.ArrayList;
 
 public class PlayerManager {
-    private final ArrayList<Player> listOfPlayers = new ArrayList<>();
-    private final ArrayList<Player> listOfRealPlayers = new ArrayList<>();
-    private final ArrayList<OponentAI> listOfNPC = new ArrayList<>();
+    private ArrayList<Player> listOfPlayers = new ArrayList<>();
+    private ArrayList<Player> listOfRealPlayers = new ArrayList<>();
+    private ArrayList<OponentAI> listOfNPC = new ArrayList<>();
     private PlayerPosition initialPlayerPosition = PlayerPosition.SMALL_BLIND;
 
 
-    public PlayerManager(int initialPlayersAmount, int initialComputerOpponents) {
-        for (int i = 0; i<  initialPlayersAmount; i++){
-            addPlayer("Player " + String.valueOf(i + 1), Game.initialPlayerCash);
-        }
-        for (int i = 3; i<  3 + initialComputerOpponents; i++){
-            addOpponent("Opponent " + String.valueOf(i + 1), Game.initialPlayerCash);
-        }
-
-        listOfPlayers.addAll(listOfRealPlayers);
-        listOfPlayers.addAll(listOfNPC);
-    }
 
     public PlayerManager(String playerName, int initialComputerOpponents) {
-        this.listOfRealPlayers.add(new Player(playerName, Game.initialPlayerCash));
-        for (int i = 3; i<  3 + initialComputerOpponents; i++){
-            addOpponent("Opponent " + String.valueOf(i + 1), Game.initialPlayerCash);
+        addPlayer(playerName, Game.initialPlayerCash);
+        for (int i = 0; i<  initialComputerOpponents; i++){
+            addOpponent("NPC" + String.valueOf(i + 1), Game.initialPlayerCash);
         }
+
 
         listOfPlayers.addAll(listOfRealPlayers);
         listOfPlayers.addAll(listOfNPC);
+
+
     }
 
 

@@ -5,18 +5,18 @@ import pl.cardtest.GUI.NewGameGridPane;
 import java.util.ArrayList;
 
 public class Game {
-    private final PlayerManager playerList;
-    private final MoneyManager moneyManager;
-    private final Deck playingDeck;
-    private final ArrayList<Card> flopCards = new ArrayList<>();
-    private final ArrayList<Card> turnCards = new ArrayList<>();
-    private final ArrayList<Card> riverCards = new ArrayList<>();
+    private PlayerManager playerList;
+    private MoneyManager moneyManager;
+    private Deck playingDeck;
+    private ArrayList<Card> flopCards = new ArrayList<>();
+    private ArrayList<Card> turnCards = new ArrayList<>();
+    private ArrayList<Card> riverCards = new ArrayList<>();
     private GameState stateOfTheGame;
     public static int initialPlayerCash = 100;
     private NewGameGridPane newGameGridPane;
 
     public Game() throws Exception {
-        this.playerList = new PlayerManager(1, 1);
+        this.playerList = new PlayerManager("temp", 1);
         this.moneyManager = new MoneyManager(20);
         this.playingDeck = new Deck();
         newGameGridPane = new NewGameGridPane(this);

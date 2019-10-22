@@ -39,15 +39,7 @@ public class NewGameGridPane {
         newGameLayoutPane.setMinSize(Main.sceneWidth, Main.sceneHeight); //do ustawienia w inicjatorze kontrolera FXML
 
 
-        Parent root = FXMLLoader.load(this.getClass().getResource("/FXMLs/NewGame.fxml"));
-        Scene newGameScene = new Scene(root, Main.sceneWidth, Main.sceneHeight);
-        newGameScene.getStylesheets().add("StyleSheets/SceneStyle.css");
-        Stage newGameStage = new Stage();
-        newGameStage.getIcons().add(new Image("icon.png"));
-        newGameStage.setTitle("TexasHoldEm - New Game");
-        newGameStage.setResizable(false);
-        newGameStage.setScene(newGameScene);
-        newGameStage.show();
+
 
 
 
