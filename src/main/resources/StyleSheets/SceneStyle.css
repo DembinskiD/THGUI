@@ -74,6 +74,10 @@
 
 }
 
+#root {
+    -fx-grid-lines-visible: true;
+}
+
 
 #decreaseButton, #increaseButton {
    -fx-min-width: 20px;

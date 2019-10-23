@@ -1,12 +1,22 @@
 package pl.cardtest;
 
 public class MoneyManager {
+    public int getOnTableCash() {
+        return onTableCash;
+    }
+
     private int onTableCash;
     private int betCash;
 
-    public MoneyManager(int startingBetCash) {
+
+    public MoneyManager(int initialSmallBlindCash) {
         this.onTableCash = 0;
-        this.betCash = startingBetCash;
+        this.betCash = initialSmallBlindCash;
+    }
+
+
+    public void addCashToTable(int cash) {
+        this.onTableCash += cash;
     }
 
 

@@ -42,6 +42,15 @@ public class Player implements PokerLayouts{
         this.setPlayerPosition(playerPosition);
     }
 
+    public void setPlayerCash(int playerCash) {
+        this.playerCash = playerCash;
+    }
+
+    public int chipMoneyIn(int cashAmount) {
+        this.playerCash -= cashAmount;
+        return cashAmount;
+    }
+
     public Player(String playerName, int initialPlayerCash) {
         this.playerName.setText(playerName);
         this.playerCash = initialPlayerCash;

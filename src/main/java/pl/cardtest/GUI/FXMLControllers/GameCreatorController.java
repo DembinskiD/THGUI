@@ -5,7 +5,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -48,6 +47,9 @@ public class GameCreatorController {
                 if (newValue.length() > 1) {
                     oppsAmountText.setText(newValue.substring(0, 1));
                 }
+                if (!newValue.equals("1")) {
+                    oppsAmountText.setText("1");
+                }
             }
         });
 
@@ -81,8 +83,9 @@ public class GameCreatorController {
         Stage newGameStage = new Stage();
         newGameStage.getIcons().add(new Image("icon.png"));
         newGameStage.setTitle("TexasHoldEm - New Game");
-        newGameStage.setResizable(false);
+        //newGameStage.setResizable(false);
         newGameStage.setScene(newGameScene);
+        newGameStage.setMaximized(true);
         newGameStage.show();
 
 

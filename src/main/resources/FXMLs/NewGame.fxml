@@ -9,15 +9,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.shape.Rectangle?>
-<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500" alignment="CENTER" hgap="20" vgap="20" fx:id="root" >
+<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml" prefHeight="500" prefWidth="500" alignment="CENTER" hgap="10" vgap="10" fx:id="root" >
     <padding>
         <Insets top="30" right="5" bottom="30" left="30"/>
     </padding>
     <columnConstraints>
         <ColumnConstraints percentWidth="20"/>
         <ColumnConstraints percentWidth="10"/>
-        <ColumnConstraints percentWidth="70" halignment="CENTER"/>
+        <ColumnConstraints percentWidth="30" halignment="CENTER"/>
     </columnConstraints>
+
+
+    <VBox fx:id="gameStats" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Label fx:id="moneyOnStack"/>
+        <Label fx:id="betCash"/>
+    </VBox>
 
 
 
@@ -41,8 +47,7 @@
 
     <Rectangle fx:id="cardStackRect" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="CENTER"/>
 
-    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="0" alignment="CENTER" vgap="10" hgap="10">
-        <Rectangle fx:id="OpponentCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="0" alignment="CENTER" vgap="10" hgap="10">
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER">
             <Label fx:id="opponentLabel"/>
             <Label fx:id="opponentPosition"/>
@@ -50,22 +55,23 @@
         </VBox>
     </GridPane>
 
-    <GridPane fx:id="FlopCards" GridPane.columnIndex="2" GridPane.rowIndex="1" alignment="CENTER" vgap="10" hgap="10">
-        <Rectangle fx:id="FlopCardStack" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Rectangle fx:id="TurnCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Rectangle fx:id="RiverCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-    </GridPane>
+    <Rectangle fx:id="OpponentCardStack" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-    <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2" alignment="CENTER" vgap="10" hgap="10">
+
+
+    <Rectangle fx:id="FlopCardStack" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    <Rectangle fx:id="TurnCardStack" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+    <Rectangle fx:id="RiverCardStack" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+
+    <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="CENTER" vgap="10" hgap="10">
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" alignment="CENTER">
             <Label fx:id="playerLabel"/>
             <Label fx:id="playerPosition"/>
             <Label fx:id="playerCash"/>
         </VBox>
-        <Rectangle fx:id="PlayerCardStack" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
     </GridPane>
 
-
+    <Rectangle fx:id="PlayerCardStack" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
 
 

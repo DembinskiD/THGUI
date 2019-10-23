@@ -79,7 +79,6 @@ public class LayoutManager {
         return inputCards.stream().max(Comparator.comparing(Card::getRank)).orElse(null);
     }
 
-    //todo showpair
 
     public boolean hasTwoPairs() {
         ArrayList<Card> outputList= new ArrayList<>(showPair(inputCards));

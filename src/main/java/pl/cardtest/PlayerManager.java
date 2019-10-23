@@ -6,7 +6,8 @@ public class PlayerManager {
     private ArrayList<Player> listOfPlayers = new ArrayList<>();
     private ArrayList<Player> listOfRealPlayers = new ArrayList<>();
     private ArrayList<OponentAI> listOfNPC = new ArrayList<>();
-    private PlayerPosition initialPlayerPosition = PlayerPosition.SMALL_BLIND;
+    private PlayerPosition initialPlayerPosition = PlayerPosition.BUTTON;
+    private Player currentPlayer;
 
 
 
@@ -16,14 +17,20 @@ public class PlayerManager {
             addOpponent("NPC" + String.valueOf(i + 1), Game.initialPlayerCash);
         }
 
-
+        this.currentPlayer = listOfRealPlayers.get(0);
         listOfPlayers.addAll(listOfRealPlayers);
         listOfPlayers.addAll(listOfNPC);
 
 
     }
 
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
     public ArrayList<Player> getListOfPlayers() {
         return listOfPlayers;
