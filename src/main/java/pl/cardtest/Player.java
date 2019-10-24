@@ -11,14 +11,19 @@ public class Player implements PokerLayouts{
     private final Text playerName = new Text();
     private final ArrayList<Card> playerCards = new ArrayList<>();
     private PlayerStatus playerStatus;
+    private int playerCash;
+    private PokerLayout pokerLayout;
+    private ArrayList<Card> cardsContainedInLayout = new ArrayList<>();
+
+
+
+
 
     public int getPlayerCash() {
         return playerCash;
     }
 
-    private int playerCash;
-    private PokerLayout pokerLayout;
-    private ArrayList<Card> cardsContainedInLayout = new ArrayList<>();
+
 
     public void updateHandsLayout() {
         this.pokerLayout = finalLayoutOfPlayer(this.playerCards);

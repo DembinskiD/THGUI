@@ -8,7 +8,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveHighCard() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -27,7 +27,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasHighCard());
@@ -36,7 +36,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowHighCard() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Heart);
@@ -55,7 +55,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
 
@@ -65,7 +65,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotHaveHighCard() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -84,7 +84,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasHighCard());
@@ -94,7 +94,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHavePair() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -113,7 +113,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasPair());
@@ -143,7 +143,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasPair());
@@ -170,7 +170,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasThree());
@@ -197,7 +197,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasThree());
@@ -206,7 +206,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveQuads() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -225,7 +225,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasQuads());
@@ -235,7 +235,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotHaveQuads() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -254,7 +254,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasQuads());
@@ -263,7 +263,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveColor() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -282,7 +282,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasColor());
@@ -291,7 +291,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotHaveColor() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Club);
@@ -310,7 +310,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player,  flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasColor());
@@ -319,7 +319,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowPair() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -338,7 +338,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.showPair().size() == 2 && layoutManager.showPair().get(0).getRank() == CardRank.K && layoutManager.showPair().get(1).getRank() == CardRank.K);
@@ -346,7 +346,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotShowPair() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -365,7 +365,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.showPair().size() == 2 && layoutManager.showPair().get(0).getRank() == CardRank.K && layoutManager.showPair().get(1).getRank() == CardRank.K);
@@ -373,7 +373,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowThree() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -392,7 +392,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.showThree().size() == 3 &&
@@ -403,7 +403,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotShowThree() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -422,7 +422,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.showThree().size() == 3 &&
@@ -433,7 +433,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowQuads() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -452,7 +452,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.showQuads().size() == 4 &&
@@ -464,7 +464,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotShowQuads() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -483,7 +483,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.showQuads().size() == 4 &&
@@ -495,7 +495,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowFullHouse() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.THREE, CardColor.Diamond);
@@ -514,7 +514,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasFullHouse());
@@ -522,7 +522,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveStraight() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -541,7 +541,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasStraight());
@@ -549,7 +549,7 @@ class LayoutManagerTest {
 
     @Test
     void shoulNotdHaveStraight() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.TWO, CardColor.Diamond);
@@ -568,7 +568,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasStraight());
@@ -577,7 +577,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowStraight() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -596,7 +596,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
         ArrayList<Card> testList;
         testList = layoutManager.showStraight();
@@ -610,7 +610,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowColor() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D", 100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -629,14 +629,14 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
         Assertions.assertTrue(layoutManager.showColor().contains(handCardOne));
     }
 
     @Test
     void shouldHaveStraightFlash() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -655,7 +655,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasStraightFlush());
@@ -664,7 +664,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowStraightFlash() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.SEVEN, CardColor.Diamond);
@@ -683,7 +683,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         System.out.println(layoutManager.showStraightFlush());
@@ -697,7 +697,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveRoyalFlash() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -716,7 +716,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasRoyalFlush());
@@ -725,7 +725,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowRoyalFlash() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.A, CardColor.Diamond);
@@ -744,7 +744,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.showRoyalFlush().contains(handCardOne) &&
@@ -756,7 +756,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldNotHaveTwoPairs() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Spade);
@@ -775,7 +775,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertFalse(layoutManager.hasTwoPairs());
@@ -784,7 +784,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldHaveTwoPairs() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -803,7 +803,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
         Assertions.assertTrue(layoutManager.hasTwoPairs());
@@ -813,7 +813,7 @@ class LayoutManagerTest {
 
     @Test
     void shouldShowTwoPairs() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -832,7 +832,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
 
@@ -845,7 +845,7 @@ class LayoutManagerTest {
 
     @Test
     void finalLayoutOfPlayer() {
-        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> handsCards, ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
+        //public pl.cardtest.HandAndTableCards(pl.cardtest.Player player, ArrayList<pl.cardtest.Card> ArrayList<pl.cardtest.Card> flopCards, pl.cardtest.Card turnCard, pl.cardtest.Card riverCard)
         Player player = new Player("D",100);
 
         Card handCardOne = new Card(CardRank.K, CardColor.Diamond);
@@ -864,7 +864,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
 
@@ -893,7 +893,7 @@ class LayoutManagerTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player, flopCards, turnCard, riverCard);
         LayoutManager layoutManager = new LayoutManager(handAndTableCards);
 
 

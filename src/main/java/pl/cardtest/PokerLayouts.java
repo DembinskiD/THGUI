@@ -11,6 +11,7 @@ interface PokerLayouts {
 
     //todo sprawdzanie poker layoutu niech bedzie interfejsem, zostanie zaimplementowany przez player(rowniez oponentAI, do sprawdzania co w danej chwili mamy, jaki layout
     //todo ma rowniez zwracac pl.cardtest.PokerLayout Enum.
+    //todo nie mam pojecia co tu sie odjaniepawla...
 
     default Card showHighCard(ArrayList<Card> inputCards) {
         return inputCards.stream().max(Comparator.comparing(Card::getRank)).orElse(null);

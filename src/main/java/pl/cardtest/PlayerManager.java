@@ -11,10 +11,10 @@ public class PlayerManager {
 
 
 
-    public PlayerManager(String playerName, int initialComputerOpponents) {
-        addPlayer(playerName, Game.initialPlayerCash);
+    public PlayerManager(String playerName, int initialComputerOpponents, int initialPlayerCash) {
+        addPlayer(playerName, initialPlayerCash);
         for (int i = 0; i<  initialComputerOpponents; i++){
-            addOpponent("NPC" + String.valueOf(i + 1), Game.initialPlayerCash);
+            addOpponent("NPC" + String.valueOf(i + 1), initialPlayerCash);
         }
 
         this.currentPlayer = listOfRealPlayers.get(0);

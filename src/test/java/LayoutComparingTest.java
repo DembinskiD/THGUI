@@ -26,7 +26,7 @@ class LayoutComparingTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player1, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player1, flopCards, turnCard, riverCard);
         LayoutManager layoutManager1 = new LayoutManager(handAndTableCards);
 
 
@@ -48,7 +48,7 @@ class LayoutComparingTest {
         flopCards2.add(flopCardThree2);
 
 
-        HandAndTableCards handAndTableCards2 = new HandAndTableCards(player2, handsCards2, flopCards2, turnCard2, riverCard2);
+        HandAndTableCards handAndTableCards2 = new HandAndTableCards(player2, flopCards2, turnCard2, riverCard2);
         LayoutManager layoutManager2 = new LayoutManager(handAndTableCards2);
 
         ArrayList<Player> listOfPlayers = new ArrayList<>();
@@ -80,7 +80,7 @@ class LayoutComparingTest {
         flopCards.add(flopCardThree);
 
 
-        HandAndTableCards handAndTableCards = new HandAndTableCards(player1, handsCards, flopCards, turnCard, riverCard);
+        HandAndTableCards handAndTableCards = new HandAndTableCards(player1, flopCards, turnCard, riverCard);
         LayoutManager layoutManager1 = new LayoutManager(handAndTableCards);
 
 
@@ -102,7 +102,7 @@ class LayoutComparingTest {
         flopCards2.add(flopCardThree2);
 
 
-        HandAndTableCards handAndTableCards2 = new HandAndTableCards(player2, handsCards2, flopCards2, turnCard2, riverCard2);
+        HandAndTableCards handAndTableCards2 = new HandAndTableCards(player2, flopCards2, turnCard2, riverCard2);
         LayoutManager layoutManager2 = new LayoutManager(handAndTableCards2);
 
         ArrayList<Player> listOfPlayers = new ArrayList<>();

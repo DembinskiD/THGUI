@@ -7,6 +7,10 @@ import javafx.scene.text.Text;
 import pl.cardtest.Main;
 
 public class GameConsole {
+    public Text getHistoryConsoleText() {
+        return historyConsoleText;
+    }
+
     private ScrollPane historyConsole;
     private Text historyConsoleText = new Text();
 
@@ -41,6 +45,8 @@ public class GameConsole {
     public ScrollPane getHistoryConsole() {
         return historyConsole;
     }
+
+
 
     public void appendHistoryConsoleText(String appendedText) {
         this.historyConsoleText.setText(this.historyConsoleText.getText() + "\n" + appendedText);

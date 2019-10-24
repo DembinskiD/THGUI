@@ -5,13 +5,21 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class LayoutComparing {
-    private final ArrayList<Player> listOfPlayers;
+    private ArrayList<Player> listOfPlayers;
 
     //todo dopisac wszystkie mozliwosci wygrania, sprawdzanie wygranego z identycznymi ukladami kart, remis(rozdanie nagrody na 2 lub wiecej osob)
 
 
     public LayoutComparing(ArrayList<Player> listOfPlayers) {
         this.listOfPlayers = listOfPlayers;
+    }
+
+    public LayoutComparing() {
+        this.listOfPlayers = new ArrayList<>();
+    }
+
+    public void addPlayer(Player player) {
+        this.listOfPlayers.add(player);
     }
 
     public Player getWinner() {

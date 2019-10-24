@@ -11,21 +11,24 @@
     </padding>
 
         <Label fx:id="oppsAmount" text="Opponents amount: " GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="oppsAmountText" text="1" minWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+        <TextField fx:id="oppsAmountText" text="1" minWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
 
         <Label fx:id="playersName" text="Players' name: " GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="playersNameText" text="Dawid" minWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+        <TextField fx:id="playersNameText" text="Dawid" minWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
 
         <Label fx:id="startingCash" text="Starting cash: " GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="startingCashText" minWidth="100" text="100" GridPane.rowIndex="2" GridPane.columnIndex="1" alignment="CENTER_LEFT"/>
+        <TextField fx:id="startingCashText" minWidth="100" text="100" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <Label fx:id="blindCash" text="Starting blind: " GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
+    <TextField fx:id="blindCashText" minWidth="100" text="20" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
 
 
 
-    <Button text="New Game" fx:id="newGameButton" onAction="#newGame" GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER"/>
-    <Button text="Exit" fx:id="exitButton" onAction="#exit" GridPane.rowIndex="3" GridPane.columnIndex="1" alignment="CENTER"/>
+    <Button text="New Game" fx:id="newGameButton" onAction="#newGame" GridPane.rowIndex="4" GridPane.columnIndex="0" alignment="CENTER"/>
+    <Button text="Exit" fx:id="exitButton" onAction="#exit" GridPane.rowIndex="4" GridPane.columnIndex="1" alignment="CENTER"/>
 
 
     <stylesheets>

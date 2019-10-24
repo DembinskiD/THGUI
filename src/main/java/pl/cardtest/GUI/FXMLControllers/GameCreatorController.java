@@ -14,10 +14,11 @@ import javafx.stage.Stage;
 import pl.cardtest.Main;
 
 public class GameCreatorController {
-    public Button exitButton;
-    public TextField startingCashText;
-    public TextField oppsAmountText;
-    public TextField playersNameText;
+    @FXML public Button exitButton;
+    @FXML public TextField startingCashText;
+    @FXML public TextField oppsAmountText;
+    @FXML public TextField playersNameText;
+    @FXML public TextField blindCashText;
 
     public GameCreatorController() {
     }
@@ -53,6 +54,17 @@ public class GameCreatorController {
             }
         });
 
+        blindCashText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (!t1.matches("\\d*")) {
+                    blindCashText.setText(t1.replaceAll("[^\\d]", ""));
+                } if (t1.length() > 2) {
+                    blindCashText.setText(t1.substring(0, 2));
+                }
+            }
+        });
+
 
         playersNameText.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -73,7 +85,8 @@ public class GameCreatorController {
     public void newGame(ActionEvent actionEvent) throws Exception {
         int opps = Integer.parseInt(oppsAmountText.getText());
         int startingCash = Integer.parseInt(startingCashText.getText());
-        NewGameController gameController = new NewGameController(opps, playersNameText.getText(), startingCash);
+        int startingBlind = Integer.parseInt(blindCashText.getText());
+        NewGameController gameController = new NewGameController(opps, playersNameText.getText(), startingCash, startingBlind);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLs/NewGame.fxml"));
         loader.setController(gameController);
@@ -87,10 +100,5 @@ public class GameCreatorController {
         newGameStage.setScene(newGameScene);
         newGameStage.setMaximized(true);
         newGameStage.show();
-
-
-
-
-
     }
 }

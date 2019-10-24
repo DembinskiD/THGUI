@@ -18,12 +18,12 @@ import pl.cardtest.GUI.GameConsole;
 
 
 public class NewGameController{
-    HBox playerCardsHBOX = new HBox();
-    HBox opponentCardsHBOX = new HBox();
-    StackPane cardsStackPane = new StackPane();
-    HBox flopCardsHBOX = new HBox();
-    HBox turnCardsHBOX = new HBox();
-    HBox riverCardsHBOX = new HBox();
+    public HBox playerCardsHBOX = new HBox();
+    public HBox opponentCardsHBOX = new HBox();
+    public StackPane cardsStackPane = new StackPane();
+    public HBox flopCardsHBOX = new HBox();
+    public HBox turnCardsHBOX = new HBox();
+    public HBox riverCardsHBOX = new HBox();
 
     public ScrollPane historyConsole = new ScrollPane();
     public GameConsole console;
@@ -54,17 +54,25 @@ public class NewGameController{
     @FXML public Button allInButton = new Button();
     @FXML public Button passButton = new Button();
     private int roundCount = 0;
-    private boolean containsFlop = false;
-    private boolean containsTurn = false;
-    private boolean containsRiver = false;
+    public HandAndTableCards playerCheck;
+    public HandAndTableCards AICheck;
+    int enemies;
+    String playerName;
+    int startingCash;
+    int smallBlind;
 
 
 
 
 
 
-    public NewGameController(int enemies, String playerName, int startingCash) throws Exception {
-        this.game = new Game(enemies, playerName, startingCash);
+
+    public NewGameController(int enemies, String playerName, int startingCash, int smallBlind) throws Exception {
+        this.enemies = enemies;
+        this.playerName = playerName;
+        this.startingCash = startingCash;
+        this.smallBlind = smallBlind;
+        this.game = new Game(enemies, playerName, startingCash, smallBlind);
         cardsStackPane.setAlignment(Pos.CENTER);
         playerCardsHBOX.setSpacing(10);
         playerCardsHBOX.setAlignment(Pos.CENTER);
@@ -79,18 +87,19 @@ public class NewGameController{
     public NewGameController() {
     }
 
-    private void setButtons(boolean var){
+    private void setButtons(boolean var, boolean endOfTurn){ //false false
         this.decreaseButton.setDisable(var);
         this.increaseButton.setDisable(var);
         this.callButton.setDisable(var);
         this.raiseButton.setDisable(var);
         this.allInButton.setDisable(var);
         this.passButton.setDisable(var);
+        if (endOfTurn) this.startGameButton.setDisable(!var);
     }
 
     @FXML
     public void initialize() {
-        setButtons(true);
+        setButtons(true, false);
 
 
         this.playerPosition.setText(this.game.getPlayerList().getListOfRealPlayers().get(0).getPlayerPosition().name());
@@ -112,6 +121,14 @@ public class NewGameController{
         rectSettings(FlopCardStack, 3);
         rectSettings(TurnCardStack, 1);
         rectSettings(RiverCardStack, 1);
+
+        //add all items to root pane
+        this.root.add(playerCardsHBOX, 2, 2);
+        this.root.add(opponentCardsHBOX, 2, 0);
+        this.root.add(cardsStackPane, 1, 1);
+        this.root.add(flopCardsHBOX, 2, 1);
+        this.root.add(turnCardsHBOX, 3, 1);
+        this.root.add(riverCardsHBOX, 4, 1);
 
     }
 
@@ -146,6 +163,7 @@ public class NewGameController{
         }
         //put cards to opponents hand
         for( Card c: this.game.getPlayerList().getListOfNPC().get(0).getPlayerCardsList()) {
+            c.turnCard(); //todo temporary for checking purpose, got to remove it later
             opponentCardsHBOX.getChildren().add(c.getCardImageView());
         }
 
@@ -169,13 +187,6 @@ public class NewGameController{
 
         updateCashLabels();
 
-        //add all items to root pane
-        this.root.add(playerCardsHBOX, 2, 2);
-        this.root.add(opponentCardsHBOX, 2, 0);
-        this.root.add(cardsStackPane, 1, 1);
-        this.root.add(flopCardsHBOX, 2, 1);
-        this.root.add(turnCardsHBOX, 3, 1);
-        this.root.add(riverCardsHBOX, 4, 1);
 
     }
 
@@ -195,38 +206,62 @@ public class NewGameController{
 
     }
 
+    //todo end of game method
+    private void endOfGame(Player winner) throws Exception {
+        console.appendHistoryConsoleText(winner.getPlayerName() + " has won with " + winner.getPokerLayout());
+        setButtons(true, true);
+        playerCardsHBOX.getChildren().clear();
+        opponentCardsHBOX.getChildren().clear();
+        riverCardsHBOX.getChildren().clear();
+        turnCardsHBOX.getChildren().clear();
+        flopCardsHBOX.getChildren().clear();
+        cardsStackPane.getChildren().clear();
+        roundCount = 0;
+        this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
+        winner.setPlayerCash(winner.getPlayerCash() + this.game.getMoneyManager().getOnTableCash());
+    }
 
-    public void nextTurn() {
+
+    public void nextTurn() throws Exception {
         roundCount++;
         if(roundCount % this.game.getPlayerList().getListOfPlayers().size() == 0) {
-            for (Card c: this.game.getFlopCards()) {
-                if(!this.root.getChildren().contains(c)){
-                c.turnCard();
-                flopCardsHBOX.getChildren().add(c.getCardImageView());
-                containsFlop = true;
+            if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 1) {
+                for(Card c : this.game.getFlopCards()) {
+                    c.turnCard();
+                    flopCardsHBOX.getChildren().add(c.getCardImageView());
                 }
-            }
-        }//od razu wyrzuca wszystkie 5 kart //todo do zrobienia zeby bylo po kolei wyrzucane
-        if(roundCount % this.game.getPlayerList().getListOfPlayers().size() == 0 && containsFlop) {
-            for(Card c : this.game.getTurnCards()) {
-                if(!this.root.getChildren().contains(c)) {
+            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 2) {
+                for(Card c: this.game.getTurnCards()) {
                     c.turnCard();
                     turnCardsHBOX.getChildren().add(c.getCardImageView());
-                    containsTurn = true;
                 }
-            }
-        }
-        if(roundCount % this.game.getPlayerList().getListOfPlayers().size() == 0 && containsTurn && !containsRiver) {
-            for(Card c : this.game.getRiverCards()) {
-                if(!this.root.getChildren().contains(c)) {
+            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 3) {
+                for(Card c : this.game.getRiverCards()) {
                     c.turnCard();
                     riverCardsHBOX.getChildren().add(c.getCardImageView());
-                    containsRiver = true;
                 }
+            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 4) {
+                //todo compare layouts here
+
+                playerCheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(0), this.game.getFlopCards(),
+                        this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
+                System.out.println(playerCheck.getLayout());
+                AICheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(1), this.game.getFlopCards(),
+                        this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
+                System.out.println(AICheck.getLayout());
+                LayoutComparing cmp = new LayoutComparing();
+                for(Player pl : this.game.getPlayerList().getListOfPlayers()) {
+                    cmp.addPlayer(pl);
+                }
+                System.out.println(cmp.getWinner());
+
+                endOfGame(cmp.getWinner());
             }
+
         }
 
-            //flopCardsHBOX
+
+
         //changing current player
         if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
             this.game.getPlayerList().setCurrentPlayer(this.game.getPlayerList().getListOfNPC().get(0));
@@ -241,7 +276,7 @@ public class NewGameController{
             playerLabel.setTextFill(Color.BLACK);
         }
 
-            //updating cash labels
+        //updating cash labels
         updateCashLabels();
 
         //setting status for current player
@@ -255,11 +290,11 @@ public class NewGameController{
         startGameButton.setDisable(true);
         this.console.appendHistoryConsoleText("Clicked start game button.");
         initialCardDistribution();
-        setButtons(false);
+        setButtons(false, false);
         startTurns();
     }
 
-    public void callButtonAction(ActionEvent actionEvent) {
+    public void callButtonAction(ActionEvent actionEvent) throws Exception {
         this.console.appendHistoryConsoleText(this.game.getPlayerList().getCurrentPlayer().getPlayerName() +
                 ": Calling in " + this.game.getMoneyManager().getBetCash() + "$");
         this.game.getMoneyManager().addCashToTable(this.game.getPlayerList().getCurrentPlayer().chipMoneyIn(this.game.getMoneyManager().getBetCash()));
@@ -267,7 +302,7 @@ public class NewGameController{
         nextTurn();
     }
 
-    public void raiseButtonAction(ActionEvent actionEvent) {
+    public void raiseButtonAction(ActionEvent actionEvent) throws Exception {
         this.console.appendHistoryConsoleText(this.game.getPlayerList().getCurrentPlayer().getPlayerName() + ": raising by "
                 + Integer.valueOf(this.raiseLabel.getText()) + "$");
         this.game.getPlayerList().getCurrentPlayer().setPlayerStatus(PlayerStatus.RAISE);
@@ -276,7 +311,7 @@ public class NewGameController{
         nextTurn();
     }
 
-    public void allInButtonAction(ActionEvent actionEvent) {
+    public void allInButtonAction(ActionEvent actionEvent) throws Exception {
         this.console.appendHistoryConsoleText(this.game.getPlayerList().getCurrentPlayer().getPlayerName() +
                 ": all in with " + this.game.getPlayerList().getCurrentPlayer().getPlayerCash() + "$");
         this.game.getMoneyManager().setBetCash(this.game.getPlayerList().getCurrentPlayer().getPlayerCash());
@@ -285,7 +320,7 @@ public class NewGameController{
         nextTurn();
     }
 
-    public void passButtonAction(ActionEvent actionEvent) {
+    public void passButtonAction(ActionEvent actionEvent) throws Exception {
         this.console.appendHistoryConsoleText(this.game.getPlayerList().getCurrentPlayer().getPlayerName() + ": passed.");
         this.game.getPlayerList().getCurrentPlayer().setPlayerStatus(PlayerStatus.PASS);
         nextTurn();
@@ -298,7 +333,7 @@ public class NewGameController{
     }
 
     public void decreaseButtonAction(ActionEvent actionEvent) {
-        if(Integer.parseInt(this.raiseLabel.getText()) > 0) {
+        if(Integer.parseInt(this.raiseLabel.getText()) > 10) {
             this.raiseLabel.setText(String.valueOf(Integer.parseInt(this.raiseLabel.getText()) - 10));
         }
     }

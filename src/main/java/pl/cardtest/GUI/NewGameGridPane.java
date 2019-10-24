@@ -1,24 +1,10 @@
 package pl.cardtest.GUI;
 
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import pl.cardtest.Card;
 import pl.cardtest.Game;
-import pl.cardtest.GameState;
 import pl.cardtest.Main;
-
-import java.io.IOException;
 
 public class NewGameGridPane {
     private final Game game;
