@@ -213,23 +213,35 @@ public class NewGameController{
         for(Player player : this.game.getPlayerList().getListOfPlayers()) {
             System.out.println(player.toString());
         }
-        console.appendHistoryConsoleText(winner.getPlayerName() + " has won with " + winner.getPokerLayout());
-        setButtons(true, true);
-        playerCardsHBOX.getChildren().clear();
-        opponentCardsHBOX.getChildren().clear();
-        riverCardsHBOX.getChildren().clear();
-        turnCardsHBOX.getChildren().clear();
-        flopCardsHBOX.getChildren().clear();
-        cardsStackPane.getChildren().clear();
         winner.setPlayerCash(winner.getPlayerCash() + this.game.getMoneyManager().getOnTableCash());
-        this.game.getPlayerList().getListOfPlayers().forEach(player -> { //todo ta funkcja dziala tylko dla dwóch graczy, trzeba ja zmienic przy wprowadzeniu wiekszej ilosci playerów
-            player.setPlayerPosition(player.getPlayerPosition().equals(PlayerPosition.BUTTON) ? PlayerPosition.SMALL_BLIND : PlayerPosition.BUTTON);
-        });
-
-        roundCount = 0;
-        //this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
-        this.game.newRound(this.smallBlind);
+        //this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0).forEach(System.out::println);
+        console.appendHistoryConsoleText(winner.getPlayerName() + " has won with " + winner.getPokerLayout());
         updateCashLabels();
+
+        if(this.game.getPlayerList().getListOfPlayers().stream().anyMatch(player -> player.getPlayerCash() == 0)) {
+            this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0).forEach(System.out::println);
+            setButtons(true, true);
+        } else {
+
+            //todo dalsza czesc tej metody pdozielic na koniec gry(gdy jeden z graczy ma 0 golda) oraz na kontunyacja(czyli obaj sa w grze i sa w stanie grac)
+            setButtons(true, true);
+            playerCardsHBOX.getChildren().clear();
+            opponentCardsHBOX.getChildren().clear();
+            riverCardsHBOX.getChildren().clear();
+            turnCardsHBOX.getChildren().clear();
+            flopCardsHBOX.getChildren().clear();
+            cardsStackPane.getChildren().clear();
+
+
+            this.game.getPlayerList().getListOfPlayers().forEach(player -> { //todo ta funkcja dziala tylko dla dwóch graczy, trzeba ja zmienic przy wprowadzeniu wiekszej ilosci playerów
+                player.setPlayerPosition(player.getPlayerPosition().equals(PlayerPosition.BUTTON) ? PlayerPosition.SMALL_BLIND : PlayerPosition.BUTTON);
+            });
+
+            roundCount = 0;
+            //this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
+            this.game.newRound(this.smallBlind);
+            updateCashLabels();
+        }
     }
 //todo nie updateuje pieniedzy po skonczeniu tury, do zrobienia
 

@@ -29,10 +29,7 @@ public class Game {
     }
 
     public void newRound(int smallBlind) {
-        if(this.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() == 0).count() > 0){
-            //todo do zrobienia koniec gry kiedy jeden z graczy nie ma pieniedzy na koncie!
-            System.out.println(this.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0));
-        }
+
         //cleaning existing arrays here
         this.flopCards.clear();
         this.turnCards.clear();
