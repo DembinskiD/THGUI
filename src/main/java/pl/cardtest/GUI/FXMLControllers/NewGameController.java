@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.jetbrains.annotations.NotNull;
 import pl.cardtest.*;
 import pl.cardtest.GUI.GameConsole;
 
@@ -87,7 +88,7 @@ public class NewGameController{
     public NewGameController() {
     }
 
-    private void setButtons(boolean var, boolean endOfTurn){ //false false
+    private void setButtons(boolean var, boolean endOfTurn){
         this.decreaseButton.setDisable(var);
         this.increaseButton.setDisable(var);
         this.callButton.setDisable(var);
@@ -137,12 +138,14 @@ public class NewGameController{
         this.opponentCash.setText(this.game.getPlayerList().getListOfNPC().get(0).getPlayerCash() + " $");
         this.moneyOnStack.setText("Money in game: " + this.game.getMoneyManager().getOnTableCash());
         this.betCash.setText("Bet cash: " + this.game.getMoneyManager().getBetCash());
+        this.playerPosition.setText(this.game.getPlayerList().getListOfRealPlayers().get(0).getPlayerPosition().name());
+        this.opponentPosition.setText(this.game.getPlayerList().getListOfNPC().get(0).getPlayerPosition().name());
     }
 
 
 
     public void rectSettings(@org.jetbrains.annotations.NotNull Rectangle temp, int cardAmount) {
-        int spaces = (cardAmount+1) * 10;
+        int spaces = (cardAmount-1) * 10;
         temp.setWidth(cardAmount * Main.cardWidth + spaces);
         temp.setHeight(Main.cardHeight);
         temp.setArcWidth(20);
@@ -181,9 +184,7 @@ public class NewGameController{
 
         this.moneyOnStack.setText("Money in game: " + this.game.getMoneyManager().getOnTableCash());
         this.betCash.setText("Bet cash: " + this.game.getMoneyManager().getBetCash());
-        for( Player pl : this.game.getPlayerList().getListOfPlayers()) {
-            System.out.println(pl.getPlayerName() + " " + pl.getPlayerCash());
-        }
+
 
         updateCashLabels();
 
@@ -193,6 +194,7 @@ public class NewGameController{
     public void startTurns() {
         //roundCount++;
         //Changing name colors for current player
+        System.out.println("current player: " + this.game.getPlayerList().getCurrentPlayer());
         if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
             playerLabel.setTextFill(Color.RED);
             opponentLabel.setTextFill(Color.BLACK);
@@ -206,8 +208,11 @@ public class NewGameController{
 
     }
 
-    //todo end of game method
-    private void endOfGame(Player winner) throws Exception {
+    //end of game method
+    private void endOfGame(@NotNull Player winner) throws Exception {
+        for(Player player : this.game.getPlayerList().getListOfPlayers()) {
+            System.out.println(player.toString());
+        }
         console.appendHistoryConsoleText(winner.getPlayerName() + " has won with " + winner.getPokerLayout());
         setButtons(true, true);
         playerCardsHBOX.getChildren().clear();
@@ -216,73 +221,85 @@ public class NewGameController{
         turnCardsHBOX.getChildren().clear();
         flopCardsHBOX.getChildren().clear();
         cardsStackPane.getChildren().clear();
-        roundCount = 0;
-        this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
         winner.setPlayerCash(winner.getPlayerCash() + this.game.getMoneyManager().getOnTableCash());
-    }
+        this.game.getPlayerList().getListOfPlayers().forEach(player -> { //todo ta funkcja dziala tylko dla dwóch graczy, trzeba ja zmienic przy wprowadzeniu wiekszej ilosci playerów
+            player.setPlayerPosition(player.getPlayerPosition().equals(PlayerPosition.BUTTON) ? PlayerPosition.SMALL_BLIND : PlayerPosition.BUTTON);
+        });
 
+        roundCount = 0;
+        //this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
+        this.game.newRound(this.smallBlind);
+        updateCashLabels();
+    }
+//todo nie updateuje pieniedzy po skonczeniu tury, do zrobienia
 
     public void nextTurn() throws Exception {
+        System.out.println(this.game.getFlopCards() + "\n" + this.game.getTurnCards() + "\n" + this.game.getRiverCards() + "\n" + "===="); //test purposes
         roundCount++;
-        if(roundCount % this.game.getPlayerList().getListOfPlayers().size() == 0) {
-            if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 1) {
-                for(Card c : this.game.getFlopCards()) {
-                    c.turnCard();
-                    flopCardsHBOX.getChildren().add(c.getCardImageView());
-                }
-            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 2) {
-                for(Card c: this.game.getTurnCards()) {
-                    c.turnCard();
-                    turnCardsHBOX.getChildren().add(c.getCardImageView());
-                }
-            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 3) {
-                for(Card c : this.game.getRiverCards()) {
-                    c.turnCard();
-                    riverCardsHBOX.getChildren().add(c.getCardImageView());
-                }
-            } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 4) {
-                //todo compare layouts here
 
-                playerCheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(0), this.game.getFlopCards(),
-                        this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
-                System.out.println(playerCheck.getLayout());
-                AICheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(1), this.game.getFlopCards(),
-                        this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
-                System.out.println(AICheck.getLayout());
-                LayoutComparing cmp = new LayoutComparing();
-                for(Player pl : this.game.getPlayerList().getListOfPlayers()) {
-                    cmp.addPlayer(pl);
-                }
-                System.out.println(cmp.getWinner());
+            //wystawienie kart po danej turze
+            if(roundCount % this.game.getPlayerList().getListOfPlayers().size() == 0) {
+                if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 1) {
+                    for(Card c : this.game.getFlopCards()) {
+                        c.turnCard();
+                        flopCardsHBOX.getChildren().add(c.getCardImageView());
+                    }
+                } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 2) {
+                    for(Card c: this.game.getTurnCards()) {
+                        c.turnCard();
+                        turnCardsHBOX.getChildren().add(c.getCardImageView());
+                    }
+                } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 3) {
+                    for(Card c : this.game.getRiverCards()) {
+                        c.turnCard();
+                        riverCardsHBOX.getChildren().add(c.getCardImageView());
+                    }
+                } if(roundCount / this.game.getPlayerList().getListOfPlayers().size() == 4) {
+                    //todo compare layouts here
 
-                endOfGame(cmp.getWinner());
+                    playerCheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(0), this.game.getFlopCards(),
+                            this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
+                    System.out.println(playerCheck.getLayout());
+                    AICheck = new HandAndTableCards(this.game.getPlayerList().getListOfPlayers().get(1), this.game.getFlopCards(),
+                            this.game.getTurnCards().get(0), this.game.getRiverCards().get(0));
+                    System.out.println(AICheck.getLayout());
+                    LayoutComparing cmp = new LayoutComparing();
+                    for(Player pl : this.game.getPlayerList().getListOfPlayers()) {
+                        cmp.addPlayer(pl);
+                    }
+
+                    endOfGame(cmp.getWinner());
+                }
+            }
+            //changing current player
+            if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
+                this.game.getPlayerList().setCurrentPlayer(this.game.getPlayerList().getListOfNPC().get(0));
+            } else this.game.getPlayerList().setCurrentPlayer(this.game.getPlayerList().getListOfRealPlayers().get(0));
+            //todo if sprawdzanie hajsu i wrzucenie wielu moetod w srodek
+            //setting buttons disable if player has less money than 'betCash'
+            //todo wyciagnac tego ifa do osobnej moetody
+            if(this.game.getPlayerList().getCurrentPlayer().getPlayerCash() < this.game.getMoneyManager().getBetCash()) {
+                this.callButton.setDisable(true);
+                this.raiseButton.setDisable(true);
+                this.increaseButton.setDisable(true);
+                this.decreaseButton.setDisable(true);
+            }
+            //Changing name colors for current player
+            if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
+                playerLabel.setTextFill(Color.RED);
+                opponentLabel.setTextFill(Color.BLACK);
+            } else {
+                opponentLabel.setTextFill(Color.RED);
+                playerLabel.setTextFill(Color.BLACK);
             }
 
+            //updating cash labels
+            updateCashLabels();
+
+            //setting status for current player
+            this.game.getPlayerList().getCurrentPlayer().setPlayerStatus(PlayerStatus.INGAME);
         }
 
-
-
-        //changing current player
-        if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
-            this.game.getPlayerList().setCurrentPlayer(this.game.getPlayerList().getListOfNPC().get(0));
-        } else this.game.getPlayerList().setCurrentPlayer(this.game.getPlayerList().getListOfRealPlayers().get(0));
-
-        //Changing name colors for current player
-        if(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())) {
-            playerLabel.setTextFill(Color.RED);
-            opponentLabel.setTextFill(Color.BLACK);
-        } else {
-            opponentLabel.setTextFill(Color.RED);
-            playerLabel.setTextFill(Color.BLACK);
-        }
-
-        //updating cash labels
-        updateCashLabels();
-
-        //setting status for current player
-        this.game.getPlayerList().getCurrentPlayer().setPlayerStatus(PlayerStatus.INGAME);
-
-    }
 
 
 
@@ -323,7 +340,9 @@ public class NewGameController{
     public void passButtonAction(ActionEvent actionEvent) throws Exception {
         this.console.appendHistoryConsoleText(this.game.getPlayerList().getCurrentPlayer().getPlayerName() + ": passed.");
         this.game.getPlayerList().getCurrentPlayer().setPlayerStatus(PlayerStatus.PASS);
-        nextTurn();
+        //todo poniższa metoda działa wyłącznie dla dwóch graczy! to be changed in later release
+        endOfGame(this.game.getPlayerList().getListOfRealPlayers().contains(this.game.getPlayerList().getCurrentPlayer())
+                ? this.game.getPlayerList().getListOfNPC().get(0) : this.game.getPlayerList().getListOfRealPlayers().get(0));
     }
 
     public void increaseButtonAction(ActionEvent actionEvent) {

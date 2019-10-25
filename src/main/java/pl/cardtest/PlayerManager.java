@@ -17,15 +17,15 @@ public class PlayerManager {
             addOpponent("NPC" + String.valueOf(i + 1), initialPlayerCash);
         }
 
-        this.currentPlayer = listOfRealPlayers.get(0);
         listOfPlayers.addAll(listOfRealPlayers);
         listOfPlayers.addAll(listOfNPC);
-
+        assert listOfPlayers.stream().filter(player -> player.getPlayerPosition().equals(PlayerPosition.BUTTON)).count() == 1 : "More than 1 player has BUTTON position!";
+        this.currentPlayer = listOfPlayers.stream().filter(player -> player.getPlayerPosition().equals(PlayerPosition.BUTTON)).findFirst().get();
 
     }
 
     public Player getCurrentPlayer() {
-        return currentPlayer;
+        return this.currentPlayer;
     }
 
     public void setCurrentPlayer(Player currentPlayer) {

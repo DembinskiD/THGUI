@@ -31,7 +31,7 @@ public class Player implements PokerLayouts{
 
     }
 
-    private void setPlayerPosition(PlayerPosition playerPosition) {
+    public void setPlayerPosition(PlayerPosition playerPosition) {
         this.playerPosition = playerPosition;
     }
 

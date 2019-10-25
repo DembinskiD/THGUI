@@ -73,7 +73,7 @@ public class GameCreatorController {
             }
         });
 
-
+        this.oppsAmountText.setDisable(true); //todo oppsAmountText jest wylaczony tymczasowo(zmienione po wprowadzeniu wiekszej ilosci graczy)
 
     }
 

@@ -19,7 +19,7 @@
 
 
         <Label fx:id="startingCash" text="Starting cash: " GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="startingCashText" minWidth="100" text="100" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <TextField fx:id="startingCashText" minWidth="100" text="500" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
     <Label fx:id="blindCash" text="Starting blind: " GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
     <TextField fx:id="blindCashText" minWidth="100" text="20" GridPane.rowIndex="3" GridPane.columnIndex="1"/>

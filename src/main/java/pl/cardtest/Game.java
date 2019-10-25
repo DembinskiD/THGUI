@@ -29,13 +29,28 @@ public class Game {
     }
 
     public void newRound(int smallBlind) {
+        if(this.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() == 0).count() > 0){
+            //todo do zrobienia koniec gry kiedy jeden z graczy nie ma pieniedzy na koncie!
+            System.out.println(this.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0));
+        }
+        //cleaning existing arrays here
+        this.flopCards.clear();
+        this.turnCards.clear();
+        this.riverCards.clear();
         this.stateOfTheGame = GameState.INITIAL;
         this.moneyManager = new MoneyManager(smallBlind);
         this.playingDeck = new Deck();
         playerList.getListOfPlayers().forEach(player -> {
             player.getPlayerCardsList().clear();
             player.setPokerLayout(PokerLayout.NONE);
+            player.setPlayerStatus(PlayerStatus.INGAME);
         });
+        this.getPlayerList().setCurrentPlayer(this.getPlayerList().getListOfRealPlayers().contains(this.getPlayerList().getCurrentPlayer())
+                ? this.getPlayerList().getListOfNPC().get(0) : this.getPlayerList().getListOfRealPlayers().get(0));
+        firstCardDistributionToPlayersHands();
+        flop();
+        turn();
+        river();
     }
 
 

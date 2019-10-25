@@ -26,6 +26,7 @@ public class Deck {
     }
 
     public Stack<Card> getDeckStack() {
+        assert deckStack.size() < 13*4 : "DeckStack has more than 52 cards!";
         return deckStack;
     }
 }

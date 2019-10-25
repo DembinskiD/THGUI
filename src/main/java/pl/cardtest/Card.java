@@ -3,6 +3,7 @@ package pl.cardtest;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.jetbrains.annotations.Contract;
 
 import java.util.Objects;
 
@@ -15,6 +16,7 @@ public class Card implements Comparable{
 
 
     //Konstruktor
+
 
 
     public Card(CardRank rank, CardColor color){
