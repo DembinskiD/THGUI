@@ -19,9 +19,7 @@ public class Player implements PokerLayouts{
 
 
 
-    public int getPlayerCash() {
-        return playerCash;
-    }
+    public int getPlayerCash() { return playerCash; }
 
 
 

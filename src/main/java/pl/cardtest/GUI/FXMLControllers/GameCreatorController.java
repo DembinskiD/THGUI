@@ -13,18 +13,32 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pl.cardtest.Main;
 
+
 public class GameCreatorController {
     @FXML public Button exitButton;
     @FXML public TextField startingCashText;
     @FXML public TextField oppsAmountText;
     @FXML public TextField playersNameText;
     @FXML public TextField blindCashText;
+    private int startingCash;
+    private int oppsAmount;
+    private String playersName;
+    private int blindCash;
 
-    public GameCreatorController() {
+    public GameCreatorController(int startingCash, int oppsAmount, String playersName, int blindCash) {
+        this.startingCash = startingCash;
+        this.oppsAmount = oppsAmount;
+        this.playersName = playersName;
+        this.blindCash = blindCash;
     }
 
     @FXML
     public void initialize() {
+        this.startingCashText.setText(String.valueOf(startingCash));
+        this.oppsAmountText.setText(String.valueOf(oppsAmount));
+        this.playersNameText.setText(playersName);
+        this.blindCashText.setText(String.valueOf(blindCash));
+
         //force field to be numeric only
         startingCashText.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -86,7 +100,9 @@ public class GameCreatorController {
         int opps = Integer.parseInt(oppsAmountText.getText());
         int startingCash = Integer.parseInt(startingCashText.getText());
         int startingBlind = Integer.parseInt(blindCashText.getText());
+        //todo dodać w tym miejscu zapis do pliku
         NewGameController gameController = new NewGameController(opps, playersNameText.getText(), startingCash, startingBlind);
+        Main.saveDataToFile();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXMLs/NewGame.fxml"));
         loader.setController(gameController);

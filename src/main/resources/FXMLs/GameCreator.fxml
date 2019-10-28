@@ -5,24 +5,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<GridPane xmlns="http://javafx.com/javafx/11" fx:controller="pl.cardtest.GUI.FXMLControllers.GameCreatorController" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="20" vgap="20">
+<GridPane xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml" alignment="CENTER" hgap="20" vgap="20">
     <padding>
         <Insets top="30" right="5" bottom="30" left="30"/>
     </padding>
 
         <Label fx:id="oppsAmount" text="Opponents amount: " GridPane.rowIndex="0" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="oppsAmountText" text="1" minWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <TextField fx:id="oppsAmountText" minWidth="100"  GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
 
         <Label fx:id="playersName" text="Players' name: " GridPane.rowIndex="1" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="playersNameText" text="Dawid" minWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="playersNameText" minWidth="100" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
 
         <Label fx:id="startingCash" text="Starting cash: " GridPane.rowIndex="2" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-        <TextField fx:id="startingCashText" minWidth="100" text="500" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+        <TextField fx:id="startingCashText" minWidth="100" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
     <Label fx:id="blindCash" text="Starting blind: " GridPane.rowIndex="3" GridPane.columnIndex="0" alignment="CENTER_RIGHT"/>
-    <TextField fx:id="blindCashText" minWidth="100" text="20" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    <TextField fx:id="blindCashText" minWidth="100" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
 
 

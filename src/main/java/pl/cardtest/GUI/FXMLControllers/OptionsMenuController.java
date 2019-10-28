@@ -9,7 +9,11 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import pl.cardtest.Main;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class OptionsMenuController implements Initializable {
@@ -26,6 +30,7 @@ public class OptionsMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Main.readDataFromFile();
         view1.setFitHeight(Main.optionsCardHeight);
         view1.setFitWidth(Main.optionsCardWidth);
         view2.setFitHeight(Main.optionsCardHeight);
@@ -39,6 +44,15 @@ public class OptionsMenuController implements Initializable {
         view6.setFitHeight(Main.optionsCardHeight);
         view6.setFitWidth(Main.optionsCardWidth);
 
+        //read chosen background and use it as selected toggle
+        for (int i = 0; i < toggleGroup.getToggles().size(); i++) {
+            RadioButton tempRB = (RadioButton) toggleGroup.getToggles().get(i);
+            if(Main.cardRewers.contains(tempRB.getId())) {
+                toggleGroup.selectToggle(toggleGroup.getToggles().get(i));
+                break;
+            }
+        }
+
     }
 
     public void exitButtonAction(ActionEvent actionEvent) {
@@ -46,13 +60,15 @@ public class OptionsMenuController implements Initializable {
         scene.close();
     }
 
-    public void applyButtonAction(ActionEvent actionEvent) {
+    public void applyButtonAction(ActionEvent actionEvent) throws IOException {
+        File datFile = new File("creatorData.dat");
         RadioButton rb = (RadioButton) toggleGroup.getSelectedToggle();
         String text = String.valueOf(rb.getId()) + ".png";
         Main.cardRewers = text;
+        Main.saveDataToFile();
     }
 
-    public void applyAndExitButtonAction(ActionEvent actionEvent) {
+    public void applyAndExitButtonAction(ActionEvent actionEvent) throws IOException {
         applyButtonAction(actionEvent);
         exitButtonAction(actionEvent);
     }

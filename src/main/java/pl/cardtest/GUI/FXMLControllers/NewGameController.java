@@ -210,20 +210,23 @@ public class NewGameController{
 
     //end of game method
     private void endOfGame(@NotNull Player winner) throws Exception {
-        for(Player player : this.game.getPlayerList().getListOfPlayers()) {
-            System.out.println(player.toString());
-        }
         winner.setPlayerCash(winner.getPlayerCash() + this.game.getMoneyManager().getOnTableCash());
         //this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0).forEach(System.out::println);
         console.appendHistoryConsoleText(winner.getPlayerName() + " has won with " + winner.getPokerLayout());
         updateCashLabels();
 
         if(this.game.getPlayerList().getListOfPlayers().stream().anyMatch(player -> player.getPlayerCash() == 0)) {
+            this.console.appendHistoryConsoleText(this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() == 0).findFirst().get().getPlayerName() +
+                    " has no cash. \nGame is over.\nCongratulations to " + this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0).findAny().get().getPlayerName() + "!");
             this.game.getPlayerList().getListOfPlayers().stream().filter(player -> player.getPlayerCash() > 0).forEach(System.out::println);
             setButtons(true, true);
+            playerCardsHBOX.getChildren().clear();
+            opponentCardsHBOX.getChildren().clear();
+            riverCardsHBOX.getChildren().clear();
+            turnCardsHBOX.getChildren().clear();
+            flopCardsHBOX.getChildren().clear();
+            cardsStackPane.getChildren().clear();
         } else {
-
-            //todo dalsza czesc tej metody pdozielic na koniec gry(gdy jeden z graczy ma 0 golda) oraz na kontunyacja(czyli obaj sa w grze i sa w stanie grac)
             setButtons(true, true);
             playerCardsHBOX.getChildren().clear();
             opponentCardsHBOX.getChildren().clear();
@@ -238,12 +241,11 @@ public class NewGameController{
             });
 
             roundCount = 0;
-            //this.game = new Game(this.enemies, this.playerName, this.startingCash, this.smallBlind); //todo game nie może być update 'owane bo zeruje 'startingCash'
             this.game.newRound(this.smallBlind);
             updateCashLabels();
         }
     }
-//todo nie updateuje pieniedzy po skonczeniu tury, do zrobienia
+
 
     public void nextTurn() throws Exception {
         System.out.println(this.game.getFlopCards() + "\n" + this.game.getTurnCards() + "\n" + this.game.getRiverCards() + "\n" + "===="); //test purposes
