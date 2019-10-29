@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class PlayerManager {
     private ArrayList<Player> listOfPlayers = new ArrayList<>();
     private ArrayList<Player> listOfRealPlayers = new ArrayList<>();
-    private ArrayList<OponentAI> listOfNPC = new ArrayList<>();
+    private ArrayList<OpponentAI> listOfNPC = new ArrayList<>();
     private PlayerPosition initialPlayerPosition = PlayerPosition.BUTTON;
     private Player currentPlayer;
 
@@ -42,7 +42,7 @@ public class PlayerManager {
     }
 
     private void addOpponent(String playerName, int initialCash) {
-        this.listOfNPC.add(new OponentAI(playerName, initialCash, initialPlayerPosition));
+        this.listOfNPC.add(new OpponentAI(playerName, initialCash, initialPlayerPosition));
         initialPlayerPosition = initialPlayerPosition.next();
     }
 
@@ -50,7 +50,7 @@ public class PlayerManager {
         return listOfRealPlayers;
     }
 
-    public ArrayList<OponentAI> getListOfNPC() {
+    public ArrayList<OpponentAI> getListOfNPC() {
         return listOfNPC;
     }
 }

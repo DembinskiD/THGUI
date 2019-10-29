@@ -3,7 +3,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pl.cardtest.*;
 
-class OponentAITest {
+class OpponentAITest {
     private static final Player player = new Player("Dawid", 100, PlayerPosition.SMALL_BLIND);
 
     @BeforeAll
